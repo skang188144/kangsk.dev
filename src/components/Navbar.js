@@ -1,21 +1,31 @@
 import './Navbar.css';
-import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 
-class Navbar extends Component {
-    render() {
-        return (
-            <>
-                <nav className='Navbar'>
-                    <div className='NavbarContainer'>
-                        <Link to='/' className='navbar-logo'>
-                            <img src='.../public/logo192.png'/>
-                        </Link>
-                    </div>
-                </nav>
-            </>
-        );
-    }
+const Navbar = () => {
+    return (
+        <>
+            <nav className='Navbar'>
+                <ul>
+                    <li>
+                        <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                        <Link to="/about">About</Link>
+                    </li>
+                    <li>
+                        <Link to="/projects">Projects</Link>
+                    </li>
+                    <li>
+                        <Link to="/pokemon-ai">Pokemon-AI</Link>
+                    </li>
+                    <li>
+                        <Link to="/terminal">Terminal</Link>
+                    </li>
+                </ul>
+
+            </nav>
+        </>
+    );
 }
 
 export default Navbar;

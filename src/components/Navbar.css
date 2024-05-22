@@ -1,3 +1,25 @@
 .Navbar {
     background-color: #383434;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+.Navbar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+}
+
+.Navbar ul li {
+    display: inline;
+    list-style: none;
+    padding-left: 90px;
+    padding-right: 90px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    font-size: 1rem;
+    border-radius: 10px 10px 0px 0px;
+    background-color: black;
 }
