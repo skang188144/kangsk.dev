@@ -1,29 +1,18 @@
 import { useState } from "react"
-import './Terminal.css';
+import TerminalComponent from '../TerminalComponent';
+import '../TerminalComponent.css';
 
 const Terminal = () => {
-    const [input, setInput] = useState('')
-
-    const onChange = (event) => {
-        setInput(event.target.value)
-    }
-
-    const onEnter = (event) => {
-        if (event.key === "Enter") {
-            window.alert("test")
-        }
-    }
+    const [terminalLineData, setTerminalLineData] = useState([<div>Welcome to the demo</div>])
 
     return (
-        <>
-            <div className='Terminal'>
-                <input 
-                    type='text' 
-                    value={input}
-                    onChange={onChange}
-                    onKeyDown={onEnter}/>
-            </div>
-        </>
+        <TerminalComponent prompt='guest@kangsk.dev:~$' onInput={ terminalInput => {
+            let newData = [...terminalLineData]
+            newData.push(<div terminalprompt='guest@kangsk.dev:~$' className="TerminalLineWrapper TerminalLinePromptWrapper">{ terminalInput }</div>)
+            setTerminalLineData(newData)
+            }}>
+            { terminalLineData }
+        </TerminalComponent>
     );
 }
 

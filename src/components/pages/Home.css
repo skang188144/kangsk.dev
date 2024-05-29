@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
+
 .Terminal {
     background-color: transparent;
     color: white;
     height: 100vh;
+    width: 100vw;
     padding: 1rem;
     box-sizing: border-box;
 }
@@ -11,6 +14,31 @@ input {
     outline: none;
     margin: 0;
     padding: 0;
+    width: 70vw;
     background-color: transparent;
     color: white;
+    font-family: "Source Code Pro";
+}
+
+.Prompt {
+    display: inline-block;
+    font-family: "Source Code Pro";
+}
+
+.BlockCaret {
+    animation: blink infinite 1s step-end;
+    background-color: hsla(1, 1%, 100%, 1);
+    color: #000;
+    height: 16px;
+    width: 8px;
+}
+
+@keyframes blink {
+    from,
+    to {
+      background-color: transparent;
+    }
+    50% {
+      background-color: white;
+    }
 }

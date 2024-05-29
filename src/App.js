@@ -6,8 +6,10 @@ import About from './components/pages/About';
 import Projects from './components/pages/Projects';
 import Pokemon_AI from './components/pages/Pokemon_AI';
 import Terminal from './components/pages/Terminal';
+import { useEffect } from 'react';
 
 function App() {
+
   return (
     <div className='App'>
       <Navbar/>

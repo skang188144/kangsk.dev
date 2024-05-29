@@ -17,11 +17,13 @@ const Home = () => {
 
     return (
         <div className='Terminal'>
+            <div className="Prompt">guest@kangsk.dev:/home$</div>
             <input 
                 type='text' 
                 value={input}
                 onChange={onChange}
                 onKeyDown={onEnter}/>
+            <div className="BlockCaret"></div>
         </div>
     );
 }

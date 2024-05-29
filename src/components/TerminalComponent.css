@@ -1,0 +1,68 @@
+.TerminalWrapper {
+    width: 100%;
+    background: #1f1e1d;
+    color: white;
+    font-size: 18px;
+    font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
+    border-radius: 4px;
+    padding: 25px 45px 25px 45px;
+    position: relative;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+}
+  
+.Terminal {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    height: inherit;
+}
+  
+  .TerminalLineWrapper {
+    white-space: pre;
+  }
+  
+  .TerminalLineWrapper:before {
+    /* Set up defaults and ensure empty lines are displayed. */
+    display: inline-block;
+    vertical-align: middle;
+    color: #a2a2a2;
+  }
+  
+  .TerminalLinePromptWrapper[terminalprompt]:before {
+    margin-right: 0.75em;
+    content: attr(terminalprompt);
+  }
+  
+  .TerminalWrapper:focus-within .TerminalLineCursorWrapper .TerminalLineCursor {
+    position: relative;
+    display: inline-block;
+    width: 0.55em;
+    height: 0.93em;
+    top: 0.225em;
+    background: #fff;
+    -webkit-animation: blink 1s infinite;
+            animation: blink 1s infinite;
+  }
+  
+  /* Cursor animation */
+  
+  @-webkit-keyframes blink {
+    50% {
+        opacity: 0;
+    }
+  }
+  
+  @keyframes blink {
+    50% {
+        opacity: 0;
+    }
+  }
+  
+  .TerminalHiddenInput {
+        font-size: inherit;
+        font-family: inherit;
+        position: fixed;
+        left: -1000px;
+  }

@@ -14,3 +14,10 @@ input {
     background-color: transparent;
     color: white;
 }
+
+  
+  .terminal-output[data-terminal-prompt]:before {
+    content: attr(data-terminal-prompt);
+    color: #a2a2a2;
+    margin-right: 0.75em;
+  }
