@@ -1,5 +1,8 @@
 .App {
-    background-color: black;
+    background-color: #1f1e1d;
     margin: 0;
     padding: 0;
+    display: inline-block;
+    min-width: 1086.5px;
+    width: 100vw;
 }

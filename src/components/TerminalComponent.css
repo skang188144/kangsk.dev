@@ -1,14 +1,11 @@
 .TerminalWrapper {
-    width: 100%;
     background: #1f1e1d;
     color: white;
     font-size: 18px;
     font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
     border-radius: 4px;
-    padding: 25px 45px 25px 45px;
+    margin: 25px 45px 25px 45px;
     position: relative;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
 }
   
 .Terminal {
@@ -16,11 +13,11 @@
     display: flex;
     flex-direction: column;
     width: inherit;
-    height: inherit;
 }
   
   .TerminalLineWrapper {
-    white-space: pre;
+    white-space: break-spaces;
+    overflow-wrap: break-word;
   }
   
   .TerminalLineWrapper:before {
@@ -29,7 +26,7 @@
     vertical-align: middle;
     color: #a2a2a2;
   }
-  
+
   .TerminalLinePromptWrapper[terminalprompt]:before {
     margin-right: 0.75em;
     content: attr(terminalprompt);
@@ -66,3 +63,9 @@
         position: fixed;
         left: -1000px;
   }
+
+.TerminalScrollHelper {
+    width: 0.55em;
+    display: inline-block;
+    vertical-align: bottom;
+}

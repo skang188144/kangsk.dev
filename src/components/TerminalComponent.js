@@ -1,7 +1,7 @@
-import { useEffect, useState, useRef, KeyboardEvent, ChangeEvent, ReactNode, ReactNodeArray } from "react"
+import { useEffect, useState, useRef } from "react"
 import './TerminalComponent.css';
 
-const TerminalComponent = ({prompt, height = "600px", colorMode, onInput, children, startingInputValue = "", scrollToPosition = true}) => {
+const TerminalComponent = ({prompt, height = "600px", onInput, children, startingInputValue = "", scrollToPosition = true}) => {
     const [input, setInput] = useState('')
     const [cursorPosition, setCursorPosition] = useState(0)
     const scrollIntoViewRef = useRef(null)
@@ -119,10 +119,12 @@ const TerminalComponent = ({prompt, height = "600px", colorMode, onInput, childr
 
     return (
         <div className={ 'TerminalWrapper' }>
-            <div className="Terminal" style={ { height } }>
+            <div className="Terminal">
                 { children }
-                <div className="TerminalLineWrapper TerminalLinePromptWrapper TerminalLineCursorWrapper" terminalprompt={ prompt || '$' }>{ input }<span className="TerminalLineCursor" style={{ left: `${cursorPosition + 1}px` }}></span></div>
-                <div ref={ scrollIntoViewRef }></div>
+                <div className="TerminalLineWrapper TerminalLinePromptWrapper TerminalLineCursorWrapper" terminalprompt={ prompt || '$' }>
+                    { input }
+                    <span ref={ scrollIntoViewRef } className="TerminalLineCursor" style={{ left: `${cursorPosition + 1}px` }}></span>
+                    </div>
             </div>
             <input className="TerminalHiddenInput" value={ input } autoFocus={ onInput != null } onChange={ updateInput } onKeyDown={ handleInput }/>
         </div>

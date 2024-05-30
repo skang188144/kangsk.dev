@@ -3,7 +3,7 @@ import TerminalComponent from '../TerminalComponent';
 import '../TerminalComponent.css';
 
 const Terminal = () => {
-    const [terminalLineData, setTerminalLineData] = useState([<div>Welcome to the demo</div>])
+    const [terminalLineData, setTerminalLineData] = useState([<div className="TerminalLineWrapper">Welcome to the demo</div>])
 
     return (
         <TerminalComponent prompt='guest@kangsk.dev:~$' onInput={ terminalInput => {
