@@ -1,4 +1,4 @@
-.TerminalWrapper {
+.Terminal {
     background: #1f1e1d;
     color: white;
     font-size: 18px;
@@ -6,33 +6,35 @@
     border-radius: 4px;
     margin: 25px 45px 25px 45px;
     position: relative;
+    border: 1px solid white;
 }
   
-.Terminal {
+.TerminalContainer {
     overflow: auto;
     display: flex;
     flex-direction: column;
     width: inherit;
+    height: inherit;
+    max-height: calc(100vh - 32px);
 }
-  
-  .TerminalLineWrapper {
+
+.TerminalLine {
     white-space: break-spaces;
     overflow-wrap: break-word;
-  }
+}
   
-  .TerminalLineWrapper:before {
-    /* Set up defaults and ensure empty lines are displayed. */
+.TerminalLine:before {
     display: inline-block;
     vertical-align: middle;
     color: #a2a2a2;
-  }
+}
 
-  .TerminalLinePromptWrapper[terminalprompt]:before {
+.TerminalPrompt[prompt]:before {
     margin-right: 0.75em;
-    content: attr(terminalprompt);
-  }
+    content: attr(prompt);
+}
   
-  .TerminalWrapper:focus-within .TerminalLineCursorWrapper .TerminalLineCursor {
+.Terminal:focus-within .TerminalCursorContainer .TerminalCursor {
     position: relative;
     display: inline-block;
     width: 0.55em;
@@ -41,31 +43,23 @@
     background: #fff;
     -webkit-animation: blink 1s infinite;
             animation: blink 1s infinite;
-  }
-  
-  /* Cursor animation */
-  
-  @-webkit-keyframes blink {
-    50% {
-        opacity: 0;
-    }
-  }
-  
-  @keyframes blink {
-    50% {
-        opacity: 0;
-    }
-  }
-  
-  .TerminalHiddenInput {
-        font-size: inherit;
-        font-family: inherit;
-        position: fixed;
-        left: -1000px;
-  }
+}
 
-.TerminalScrollHelper {
-    width: 0.55em;
-    display: inline-block;
-    vertical-align: bottom;
+.TerminalHiddenInput {
+    font-size: inherit;
+    font-family: inherit;
+    position: fixed;
+    left: -1000px;
+}
+    
+@-webkit-keyframes blink {
+    50% {
+        opacity: 0;
+    }
+}
+  
+@keyframes blink {
+    50% {
+        opacity: 0;
+    }
 }

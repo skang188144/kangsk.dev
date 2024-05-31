@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react"
 import './TerminalComponent.css';
 
-const TerminalComponent = ({prompt, height = "600px", onInput, children, startingInputValue = "", scrollToPosition = true}) => {
+const TerminalComponent = ({prompt, initialInput, onInputEntered, terminalLines}) => {
     const [input, setInput] = useState('')
     const [cursorPosition, setCursorPosition] = useState(0)
-    const scrollIntoViewRef = useRef(null)
+    const cursorRef = useRef(null)
 
     /*
      * useEffect() hooks 
@@ -12,40 +12,39 @@ const TerminalComponent = ({prompt, height = "600px", onInput, children, startin
 
     // Set the starting input value
     useEffect(() => {
-        setInput(startingInputValue.trim())
-    }, [startingInputValue])
+        setInput(initialInput.trim())
+    }, [initialInput])
 
     // Scroll down when the user presses enter and new output appears
     useEffect(() => {
-        setTimeout(scrollIntoViewRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
-    }, [children])
+        setTimeout(cursorRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
+    }, [terminalLines])
 
     // Scroll down when the user inputs anything, even without pressing enter
     useEffect(() => {
-        setTimeout(scrollIntoViewRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
+        setTimeout(cursorRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
     }, [input])
 
     // Play typing animation for initial text
-    useEffect(() => {
-        triggerTypeAnimation('°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸°º¤ø,¸¸,ø¤º°`°º¤ø,¸,ø¤°º¤ø,¸¸,ø¤º°`°º¤ø,¸');
-    }, [])
+    // useEffect(() => {
+    //     triggerTypeAnimation('');
+    // }, [])
 
     // Attach click listener to focus the hidden input box at all times the user is clicking anywhere on the site contents
     useEffect(() => {
-        if (onInput == null) {
+        if (onInputEntered == null) {
             return;
         }
 
-        const terminalWrapper = document.getElementsByClassName('TerminalWrapper')[0];
+        const terminal = document.getElementsByClassName('Terminal')[0];
+        const listener = (() => (terminal?.querySelector('.TerminalHiddenInput'))?.focus());
 
-        const listener = (() => (terminalWrapper?.querySelector('.TerminalHiddenInput'))?.focus());
-
-        terminalWrapper.addEventListener('click', listener);
+        terminal.addEventListener('click', listener);
 
         return () => {
-            terminalWrapper.removeEventListener('click', listener.listener);
+            terminal.removeEventListener('click', listener.listener);
         }
-    }, [onInput]);
+    }, [onInputEntered]);
 
     /*
      * Utility Functions
@@ -83,7 +82,7 @@ const TerminalComponent = ({prompt, height = "600px", onInput, children, startin
 
     const handleInput = (event) => {
         if (event.key === "Enter") {
-            onInput(input)
+            onInputEntered(input)
             setCursorPosition(0)
             setInput("")
             return;
@@ -94,19 +93,23 @@ const TerminalComponent = ({prompt, height = "600px", onInput, children, startin
             let cursorIndex = input.length - (inputElement.selectionStart || 0);
             cursorIndex = clamp(cursorIndex, 0, input.length);
 
-            if (event.key === 'ArrowLeft') {
-                if(cursorIndex > input.length - 1) cursorIndex--;
-                charsToRightOfCursor = input.slice(input.length - 1 - cursorIndex);
-            }
-            else if (event.key === 'ArrowRight' || event.key === 'Delete') {
-                charsToRightOfCursor = input.slice(input.length - cursorIndex + 1);
-            }
-            else if (event.key === 'ArrowUp') {
-                charsToRightOfCursor = input.slice(0)
+            switch (event.key) {
+                case 'ArrowLeft':
+                    if (cursorIndex > input.length - 1) cursorIndex--;
+                    charsToRightOfCursor = input.slice(input.length - 1 - cursorIndex);
+                    break;
+                case 'ArrowRight': case 'Delete':
+                    /*
+                     * TODO: fix issue with Ctrl + Delete
+                     */
+                    charsToRightOfCursor = input.slice(input.length - cursorIndex + 1);
+                    break;
+                case 'ArrowUp':
+                    charsToRightOfCursor = input.slice(0);
+                    break;
             }
 
             const inputWidth = calculateInputWidth(inputElement, charsToRightOfCursor);
-            console.log('charsToRightOfCursor: ' + charsToRightOfCursor);
             setCursorPosition(inputWidth);
         } 
     }
@@ -118,15 +121,15 @@ const TerminalComponent = ({prompt, height = "600px", onInput, children, startin
     }
 
     return (
-        <div className={ 'TerminalWrapper' }>
-            <div className="Terminal">
-                { children }
-                <div className="TerminalLineWrapper TerminalLinePromptWrapper TerminalLineCursorWrapper" terminalprompt={ prompt || '$' }>
+        <div className='Terminal'>
+            <div className="TerminalContainer">
+                { terminalLines }
+                <div className="TerminalLine TerminalPrompt TerminalCursorContainer" prompt={ prompt || '$' }>
                     { input }
-                    <span ref={ scrollIntoViewRef } className="TerminalLineCursor" style={{ left: `${cursorPosition + 1}px` }}></span>
-                    </div>
+                    <span ref={ cursorRef } className="TerminalCursor" style={{ left: `${cursorPosition + 1}px` }}></span>
+                </div>
             </div>
-            <input className="TerminalHiddenInput" value={ input } autoFocus={ onInput != null } onChange={ updateInput } onKeyDown={ handleInput }/>
+            <input className="TerminalHiddenInput" value={ input } autoFocus={ onInputEntered != null } onChange={ updateInput } onKeyDown={ handleInput }/>
         </div>
       );
 }

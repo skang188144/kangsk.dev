@@ -1,30 +1,57 @@
-import { useState } from "react";
-import './Home.css';
+import { useState } from 'react';
+import TerminalComponent from "../TerminalComponent";
+import TerminalController from '../TerminalController';
+import './Home.css'
 
 const Home = () => {
+    const prompt = 'guest@kangsk.dev:/home$';
+    const initialInput = '';
+    const initialDisplayTitle = [
+        '░██╗░░░░░░░██╗███████╗██╗░░░░░░█████╗░░█████╗░███╗░░░███╗███████╗  ████████╗░█████╗░',
+        '░██║░░██╗░░██║██╔════╝██║░░░░░██╔══██╗██╔══██╗████╗░████║██╔════╝  ╚══██╔══╝██╔══██╗',
+        '░╚██╗████╗██╔╝█████╗░░██║░░░░░██║░░╚═╝██║░░██║██╔████╔██║█████╗░░  ░░░██║░░░██║░░██║',
+        '░░████╔═████║░██╔══╝░░██║░░░░░██║░░██╗██║░░██║██║╚██╔╝██║██╔══╝░░  ░░░██║░░░██║░░██║',
+        '░░╚██╔╝░╚██╔╝░███████╗███████╗╚█████╔╝╚█████╔╝██║░╚═╝░██║███████╗  ░░░██║░░░╚█████╔╝',
+        '░░░╚═╝░░░╚═╝░░╚══════╝╚══════╝░╚════╝░░╚════╝░╚═╝░░░░░╚═╝╚══════╝  ░░░╚═╝░░░░╚════╝░',
+        ' ',
+        '  ██╗░░██╗░█████╗░███╗░░██╗░██████╗░░██████╗██╗░░██╗       ██████╗░███████╗██╗░░░██╗',
+        '  ██║░██╔╝██╔══██╗████╗░██║██╔════╝░██╔════╝██║░██╔╝       ██╔══██╗██╔════╝██║░░░██║',
+        '  █████═╝░███████║██╔██╗██║██║░░██╗░╚█████╗░█████═╝░       ██║░░██║█████╗░░╚██╗░██╔╝',
+        '  ██╔═██╗░██╔══██║██║╚████║██║░░╚██╗░╚═══██╗██╔═██╗░       ██║░░██║██╔══╝░░░╚████╔╝░',
+        '  ██║░╚██╗██║░░██║██║░╚███║╚██████╔╝██████╔╝██║░╚██╗  ██╗  ██████╔╝███████╗░░╚██╔╝░░',
+        '  ╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░╚═╝░░╚═╝  ╚═╝  ╚═════╝░╚══════╝░░░╚═╝░░░',
+        ' ',
+        ' '
 
-    const [input, setInput] = useState('')
+        // '        █▀ █▀█ █▀▀ ▀█▀ █░█░█ ▄▀█ █▀█ █▀▀   █▀▀ █▄░█ █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█',
+        // '        ▄█ █▄█ █▀░ ░█░ ▀▄▀▄▀ █▀█ █▀▄ ██▄   ██▄ █░▀█ █▄█ █ █░▀█ ██▄ ██▄ █▀▄',
+        // '__   __   ___ ___            __   ___     ___       __          ___  ___  __  ',
+        // '/__` /  \\ |__   |  |  |  /\\  |__) |__     |__  |\\ | / _` | |\\ | |__  |__  |__) ',
+        // '.__/ \\__/ |     |  |/\\| /~~\\ |  \\ |___    |___ | \\| \\__> | | \\| |___ |___ |  \\ ',
+            // '       ░█▀▀░█▀█░█▀▀░▀█▀░█░█░█▀█░█▀▄░█▀▀░░░█▀▀░█▀█░█▀▀░▀█▀░█▀█░█▀▀░█▀▀░█▀▄',
+            // '       ░▀▀█░█░█░█▀▀░░█░░█▄█░█▀█░█▀▄░█▀▀░░░█▀▀░█░█░█░█░░█░░█░█░█▀▀░█▀▀░█▀▄',
+            // '       ░▀▀▀░▀▀▀░▀░░░░▀░░▀░▀░▀░▀░▀░▀░▀▀▀░░░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀░▀'
+                                                                                       
+        ];
 
-    const onChange = (event) => {
-        setInput(event.target.value)
-    }
+    const initialDisplayText = [
+        'Welcome to kangsk.dev v1814.14',
+        ' ',
+        "Type 'help' to view the available list of commands.",
+        ' '
+        ];
 
-    const onEnter = (event) => {
-        if (event.key === "Enter") {
-            window.alert("test")
-        }
-    }
+    // const initialDisplayTextContainer = <div className="InitialDisplayTextContainer">{initialDisplayTitle} { initialDisplayText }</div>;
+    // const initialDisplayTextAndImageContainer = <div className="InitialDisplayTextAndImageContainer">{ initialDisplayTextContainer }</div>; //<img className="HeadshotImage" src="/Headshot.jpeg"></img>
 
     return (
-        <div className='Terminal'>
-            <div className="Prompt">guest@kangsk.dev:/home$</div>
-            <input 
-                type='text' 
-                value={input}
-                onChange={onChange}
-                onKeyDown={onEnter}/>
-            <div className="BlockCaret"></div>
-        </div>
+        <TerminalController
+            prompt = { prompt } 
+            initialInput = { initialInput }
+            initialDisplayTitle = { initialDisplayTitle }
+            initialDisplayText = { initialDisplayText }
+            overrideInitialDisplay = { false }
+            overrideInitialDisplayElement = { null }/>
     );
 }
 
