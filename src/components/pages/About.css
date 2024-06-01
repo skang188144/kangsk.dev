@@ -1,16 +1,40 @@
-.Terminal {
-    background-color: transparent;
-    color: white;
-    height: 100vh;
-    padding: 1rem;
-    box-sizing: border-box;
+@import '../TerminalController.css';
+
+.AboutInitialDisplayTextContainer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
 }
 
-input {
-    border: none;
-    outline: none;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    color: white;
+.AboutInitialDisplayTextAndImageContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.AboutInitialDisplayTitle {
+    display: inline-block;
+    overflow: hidden;
+    white-space: pre;
+    flex-shrink: 0;
+    -webkit-animation: typing 3.5s steps(60, end);
+    animation: typing 3.5s steps(60, end);
+}
+
+.AboutInitialDisplayText {
+    display: inline-block;
+    overflow: hidden;
+    white-space: pre;
+    flex-shrink: 0;
+    -webkit-animation: hide 2.5s, typing 3.5s steps(65, end);
+    animation: hide 2.5s, typing 3.5s steps(65, end);
+    animation-delay: 0s, 2.5s;
+}
+
+.HeadshotImage {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+    width: 300px;
 }

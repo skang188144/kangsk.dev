@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import TerminalComponent from "./TerminalComponent";
 import './TerminalController.css';
 
-const TerminalController = ({prompt, initialInput, initialDisplayTitle, initialDisplayText, overrideInitialDisplay, overrideInitialDisplayElement}) => {
-    let initialDisplayElements = null;
+const TerminalController = ({prompt, initialInput, initialDisplayTitle, initialDisplayText, getPageSpecificCommandOutput, overrideInitialDisplayTitle, overrideInitialDisplayText, overrideInitialDisplayElement}) => {
+    let initialDisplayElements = [];
     let navigate = useNavigate();
 
     const createInitialDisplayTitleElements = (titleList) => {
@@ -23,58 +23,30 @@ const TerminalController = ({prompt, initialInput, initialDisplayTitle, initialD
         return textList;
     }
 
-    if (overrideInitialDisplay) {
-        initialDisplayElements = [overrideInitialDisplayElement];
-    } else {
+    if (overrideInitialDisplayTitle || overrideInitialDisplayText) {
+        initialDisplayElements = [...initialDisplayElements, overrideInitialDisplayElement];
+    }
+
+    if (!overrideInitialDisplayTitle) {
         const initialDisplayTitleElements = createInitialDisplayTitleElements(initialDisplayTitle);
+        initialDisplayElements = [...initialDisplayElements, ...initialDisplayTitleElements];
+    }
+
+    if (!overrideInitialDisplayText) {
         const initialDisplayTextElements = createInitialDisplayTextElements(initialDisplayText);
-        initialDisplayElements = [...initialDisplayTitleElements, ...initialDisplayTextElements]
+        initialDisplayElements = [...initialDisplayElements, ...initialDisplayTextElements];
     }
     
     const [terminalLines, setTerminalLines] = useState(initialDisplayElements);
 
     const onInputEntered = (input) => {
         let newTerminalLines = pushInputEntered(input, terminalLines);
+        
+        const inputList = input.split(' ');
+        const command = inputList[0];
+        const args = inputList.slice(1, inputList.length);
 
-        switch (input.split(' ')[0]) {
-            case 'help':
-                newTerminalLines = pushOutput('kangsk.dev bash, version 1.8.14(1)-release (x86_64-pc-linux-gnu)', newTerminalLines, '#0f0');
-                newTerminalLines = pushOutput("These shell commands are defined internally.  Type `help' to see this list.", newTerminalLines, '#0f0');
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('Quick Navigation:', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  home', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput("    You're already here, silly.", newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  about', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    Change the current working directory to /about. Contains information about who I am and what I do.', newTerminalLines);
-                newTerminalLines = pushOutput('    ', newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  projects', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    Change the current working directory to /projects. Contains information about my personal projects.', newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  pokemon-ai', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    Change the current working directory to /pokemon-ai. Watch an AI play Pokemon!', newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  terminal', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    Change the current working directory to /terminal. Access a real Linux terminal.', newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('Miscellaneous Information:', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput(' ', newTerminalLines)
-                newTerminalLines = pushOutput('  socials [-a]', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    List all social media handles', newTerminalLines)
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('General Commands:', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  ls', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput("    List the current working directory's contents", newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  cat [file]', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    Concatenate files and print on the standard output', newTerminalLines);
-                newTerminalLines = pushOutput(' ', newTerminalLines);
-                newTerminalLines = pushOutput('  cd [dir]', newTerminalLines, '#00B2CA');
-                newTerminalLines = pushOutput('    Change the current working directory to DIR', newTerminalLines);
-                break;
+        switch (command) {
             case 'home':
                 navigate('/');
                 break;
@@ -93,7 +65,14 @@ const TerminalController = ({prompt, initialInput, initialDisplayTitle, initialD
             case '':
                 break;
             default:
-                newTerminalLines = pushOutput(input + ": command not found. Type 'help' for a list of commands to use.", newTerminalLines);
+                const pageSpecificOutput = getPageSpecificCommandOutput(command, args);
+            
+                if (pageSpecificOutput.length === 0) {
+                    newTerminalLines = pushOutput({text: command.concat(": command not found. Type 'help' for a list of commands to use.")}, newTerminalLines);
+                } else {
+                    newTerminalLines = pushOutputList(pageSpecificOutput, newTerminalLines);
+                }
+
                 break;
         }
 
@@ -107,9 +86,17 @@ const TerminalController = ({prompt, initialInput, initialDisplayTitle, initialD
     }
 
     const pushOutput = (output, terminalLines) => {
-        let outputList = [...terminalLines];
-        outputList.push(<div className="TerminalLine" style={{color: output.color}}>{ output.text }</div>);
-        return outputList;
+        let newTerminalLines = [...terminalLines];
+        newTerminalLines.push(<div className="TerminalLine" style={{color: output.color}}>{ output.text }</div>);
+        return newTerminalLines;
+    }
+
+    const pushOutputList = (outputList, terminalLines) => {
+        let newTerminalLines = [...terminalLines]
+        for (const output of outputList) {
+            newTerminalLines.push(<div className="TerminalLine" style={{color: output.color}}>{ output.text }</div>);
+        }
+        return newTerminalLines;
     }
 
     return (
