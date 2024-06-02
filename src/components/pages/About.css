@@ -1,12 +1,12 @@
 @import '../TerminalController.css';
 
-.AboutInitialDisplayTextContainer {
+.AboutInitialDisplayTitleContainer {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
 }
 
-.AboutInitialDisplayTextAndImageContainer {
+.AboutInitialDisplayTitleAndImageContainer {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
@@ -17,8 +17,6 @@
     overflow: hidden;
     white-space: pre;
     flex-shrink: 0;
-    -webkit-animation: typing 3.5s steps(60, end);
-    animation: typing 3.5s steps(60, end);
 }
 
 .AboutInitialDisplayText {
@@ -26,15 +24,24 @@
     overflow: hidden;
     white-space: pre;
     flex-shrink: 0;
-    -webkit-animation: hide 2.5s, typing 3.5s steps(65, end);
-    animation: hide 2.5s, typing 3.5s steps(65, end);
-    animation-delay: 0s, 2.5s;
 }
 
 .HeadshotImage {
     margin-left: auto;
-    margin-right: auto;
     margin-top: auto;
     margin-bottom: auto;
     width: 300px;
+    animation: pop-in 0.75s, pop-out 1s;
+    animation-delay: 0s, 5.25s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes pop-in {
+    0% { opacity: 0; transform: scale(0.1); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pop-out {
+    0% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.1); width:0; }
 }

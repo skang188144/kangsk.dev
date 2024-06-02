@@ -5,8 +5,6 @@
     overflow: hidden;
     white-space: pre;
     flex-shrink: 0;
-    -webkit-animation: typing 3.5s steps(60, end);
-    animation: typing 3.5s steps(60, end);
 }
 
 .InitialDisplayText {
@@ -14,27 +12,4 @@
     overflow: hidden;
     white-space: pre;
     flex-shrink: 0;
-    -webkit-animation: hide 2.5s, typing 3.5s steps(65, end);
-    animation: hide 2.5s, typing 3.5s steps(65, end);
-    animation-delay: 0s, 2.5s;
-}
-
-@-webkit-keyframes typing {
-    from { width: 0; overflow: hidden}
-    to { width: 100%; overflow: hidden}
-}
-  
-@keyframes typing {
-    from { width: 0 }
-    to { width: 100% }
-}
-
-@-webkit-keyframes hide {
-    from { width: 0; overflow: hidden}
-    to { width: 0; overflow: hidden}
-}
-  
-@keyframes hide {
-    from { width: 0 }
-    to { width: 0 }
 }

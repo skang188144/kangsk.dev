@@ -1,10 +1,8 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import TerminalController from '../TerminalController';
 import './About.css'
 
 const About = () => {
-    const initialDisplayTitleElementsRef = useRef(null);
-    
     const prompt = 'guest@kangsk.dev:/about$';
     const initialInput = '';
     const initialDisplayTitle = [
@@ -23,22 +21,38 @@ const About = () => {
         '╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░',
         ' ',
         ' ',
+        ' '
+        // '█▀ █▀█ █▀▀ ▀█▀ █░█░█ ▄▀█ █▀█ █▀▀   █▀▀ █▄░█ █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█',
+        // '▄█ █▄█ █▀░ ░█░ ▀▄▀▄▀ █▀█ █▀▄ ██▄   ██▄ █░▀█ █▄█ █ █░▀█ ██▄ ██▄ █▀▄'
+    ].map(text => {
+        return (<div className="AboutInitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } enableDeleteAnimation='true' deleteAnimationDelay={ 3000 }> </div>);
+    });
+
+    const initialDisplayTitle2 = [
+        '██╗    ░█████╗░███╗░░░███╗    ░█████╗░░░░░░░░░░',
+        '██║    ██╔══██╗████╗░████║    ██╔══██╗░░░░░░░░░',
+        '██║    ███████║██╔████╔██║    ███████║░░░░░░░░░',
+        '██║    ██╔══██║██║╚██╔╝██║    ██╔══██║░░░░░░░░░',
+        '██║    ██║░░██║██║░╚═╝░██║    ██║░░██║██╗██╗██╗',
+        '╚═╝    ╚═╝░░╚═╝╚═╝░░░░░╚═╝    ╚═╝░░╚═╝╚═╝╚═╝╚═╝',
+        ' ',
+        ' ',
         '█▀ █▀█ █▀▀ ▀█▀ █░█░█ ▄▀█ █▀█ █▀▀   █▀▀ █▄░█ █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█',
         '▄█ █▄█ █▀░ ░█░ ▀▄▀▄▀ █▀█ █▀▄ ██▄   ██▄ █░▀█ █▄█ █ █░▀█ ██▄ ██▄ █▀▄'
     ].map(text => {
-        return (<div className="AboutInitialDisplayTitle">{ text }</div>);
+        return (<div className="AboutInitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 8000 } enableDeleteAnimation='true' deleteAnimationDelay={ 12000 }></div>);
     });
 
     const initialDisplayText = [
+        ' ',
         "Hi there! I'm Sanghyeok, a third-year computer science student at Boston University.",
         ' ',
-        ""
     ].map(text => {
-        return (<div className="AboutInitialDisplayText">{ text }</div>);
+        return (<div className="AboutInitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 2200 } enableDeleteAnimation='true' deleteAnimationDelay={ 5500 }> </div>);
     });
 
-    const initialDisplayTextContainer = <div className='AboutInitialDisplayTextContainer'>{ initialDisplayTitle }</div>
-    const initialDisplayTextAndImageContainer = <div className='AboutInitialDisplayTextAndImageContainer'>{ initialDisplayTextContainer } <img className='HeadshotImage' src='/Headshot.jpeg'></img></div>
+    const initialDisplayTitleContainer = <div className='AboutInitialDisplayTitleContainer'>{ initialDisplayTitle } { initialDisplayTitle2 }</div>
+    const initialDisplayTitleAndImageContainer = <div className='AboutInitialDisplayTitleAndImageContainer'>{ initialDisplayTitleContainer } <img className='HeadshotImage' src='/Headshot.jpeg'></img></div>
 
     const getPageSpecificCommandOutput = (command, args) => {
         let output = [];
@@ -86,19 +100,13 @@ const About = () => {
         return output;
     }
 
-    // const initialDisplayTextContainer = <div className="InitialDisplayTextContainer">{initialDisplayTitle} { initialDisplayText }</div>;
-    // const initialDisplayTextAndImageContainer = <div className="InitialDisplayTextAndImageContainer">{ initialDisplayTextContainer }</div>; //<img className="HeadshotImage" src="/Headshot.jpeg"></img>
-
     return (
         <TerminalController
             prompt = { prompt } 
             initialInput = { initialInput }
-            initialDisplayTitle = { null }
-            initialDisplayText = { initialDisplayText }
-            getPageSpecificCommandOutput = { getPageSpecificCommandOutput }
-            overrideInitialDisplayTitle = { true }
-            overrideInitialDisplayText= { false }
-            overrideInitialDisplayElement = { initialDisplayTextAndImageContainer }/>
+            getPageSpecificCommandOutput = { getPageSpecificCommandOutput }>
+                { initialDisplayTitleAndImageContainer }
+        </TerminalController>
     );
 }
 

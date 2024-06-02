@@ -4,7 +4,7 @@ import './Home.css'
 const Home = () => {
     const prompt = 'guest@kangsk.dev:/home$';
     const initialInput = '';
-    const initialDisplayTitle = [
+    const initialDisplayTitleElements = [
         '░██╗░░░░░░░██╗███████╗██╗░░░░░░█████╗░░█████╗░███╗░░░███╗███████╗  ████████╗░█████╗░',
         '░██║░░██╗░░██║██╔════╝██║░░░░░██╔══██╗██╔══██╗████╗░████║██╔════╝  ╚══██╔══╝██╔══██╗',
         '░╚██╗████╗██╔╝█████╗░░██║░░░░░██║░░╚═╝██║░░██║██╔████╔██║█████╗░░  ░░░██║░░░██║░░██║',
@@ -19,14 +19,19 @@ const Home = () => {
         '  ██║░╚██╗██║░░██║██║░╚███║╚██████╔╝██████╔╝██║░╚██╗  ██╗  ██████╔╝███████╗░░╚██╔╝░░',
         '  ╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░╚═╝░░╚═╝  ╚═╝  ╚═════╝░╚══════╝░░░╚═╝░░░',
         ' ',
-        ' '];
+        ' '].map(text => {
+            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text }> </div>);
+        });
 
-    const initialDisplayText = [
+    const initialDisplayTextElements = [
         'Welcome to kangsk.dev v1814.14',
         ' ',
         "Type 'help' to view the available list of commands.",
         ' '
-        ];
+        ].map(text => {
+            return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 2500 }> </div>);
+        });
+
 
     const getPageSpecificCommandOutput = (command, args) => {
         let output = [];
@@ -81,8 +86,8 @@ const Home = () => {
         <TerminalController
             prompt = { prompt } 
             initialInput = { initialInput }
-            initialDisplayTitle = { initialDisplayTitle }
-            initialDisplayText = { initialDisplayText }
+            initialDisplayTitleElements = { initialDisplayTitleElements }
+            initialDisplayTextElements = { initialDisplayTextElements }
             getPageSpecificCommandOutput = { getPageSpecificCommandOutput }
             overrideInitialDisplayText = { false }
             overrideInitialDisplayTitle= { false }

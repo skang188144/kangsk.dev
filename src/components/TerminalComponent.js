@@ -1,14 +1,10 @@
 import { useEffect, useState, useRef } from "react"
 import './TerminalComponent.css';
 
-const TerminalComponent = ({prompt, initialInput, onInputEntered, terminalLines}) => {
+const TerminalComponent = ({prompt, children, initialInput, onInputEntered, terminalLines}) => {
     const [input, setInput] = useState('')
     const [cursorPosition, setCursorPosition] = useState(0)
     const cursorRef = useRef(null)
-
-    /*
-     * useEffect() hooks 
-     */
 
     // Set the starting input value
     useEffect(() => {
@@ -18,17 +14,12 @@ const TerminalComponent = ({prompt, initialInput, onInputEntered, terminalLines}
     // Scroll down when the user presses enter and new output appears
     useEffect(() => {
         setTimeout(cursorRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
-    }, [terminalLines])
+    }, [children])
 
     // Scroll down when the user inputs anything, even without pressing enter
     useEffect(() => {
         setTimeout(cursorRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
     }, [input])
-
-    // Play typing animation for initial text
-    // useEffect(() => {
-    //     triggerTypeAnimation('');
-    // }, [])
 
     // Attach click listener to focus the hidden input box at all times the user is clicking anywhere on the site contents
     useEffect(() => {
@@ -82,9 +73,9 @@ const TerminalComponent = ({prompt, initialInput, onInputEntered, terminalLines}
 
     const handleInput = (event) => {
         if (event.key === "Enter") {
-            onInputEntered(input)
-            setCursorPosition(0)
-            setInput("")
+            onInputEntered(input);
+            setCursorPosition(0);
+            setInput("");
             return;
         } else if (event.key === "ArrowUp" || event.key === "ArrowDown" || event.key === "ArrowLeft" || event.key === "ArrowRight" || event.key === 'Delete') {
             const inputElement = event.currentTarget;
@@ -114,17 +105,11 @@ const TerminalComponent = ({prompt, initialInput, onInputEntered, terminalLines}
         } 
     }
 
-    async function triggerTypeAnimation (typedValue) {
-        for (let i = 0; i < typedValue.length; i++) {
-            await setTimeout(setInput, 200 + i * 75, typedValue.slice(0, i + 1));
-        }
-    }
-
     return (
         <div className='Terminal'>
             <div className="TerminalContainer">
-                { terminalLines }
-                <div className="TerminalLine TerminalPrompt TerminalCursorContainer" prompt={ prompt || '$' }>
+                { children }
+                <div className="TerminalLine TerminalPrompt TerminalCursorContainer" prompt={ prompt }>
                     { input }
                     <span ref={ cursorRef } className="TerminalCursor" style={{ left: `${cursorPosition + 1}px` }}></span>
                 </div>
