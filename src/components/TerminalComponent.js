@@ -1,29 +1,30 @@
 import { useEffect, useState, useRef } from "react"
 import './TerminalComponent.css';
+import { getChildElementsByAttribute } from "../HelperFunctions";
 
-const TerminalComponent = ({prompt, children, initialInput, onInputEntered, terminalLines}) => {
-    const [input, setInput] = useState('')
-    const [cursorPosition, setCursorPosition] = useState(0)
-    const cursorRef = useRef(null)
+const TerminalComponent = ({prompt, children, initialInput, handleGlobalAndPageSpecificCommands, terminalLines}) => {
+    const [input, setInput] = useState('');
+    const [cursorPosition, setCursorPosition] = useState(0);
+    const cursorRef = useRef(null);
 
     // Set the starting input value
     useEffect(() => {
         setInput(initialInput.trim())
-    }, [initialInput])
+    }, [initialInput]);
 
     // Scroll down when the user presses enter and new output appears
     useEffect(() => {
         setTimeout(cursorRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
-    }, [children])
+    }, [children]);
 
     // Scroll down when the user inputs anything, even without pressing enter
     useEffect(() => {
         setTimeout(cursorRef?.current?.scrollIntoView({ behavior: "auto", block: "nearest" }), 500);
-    }, [input])
+    }, [input]);
 
     // Attach click listener to focus the hidden input box at all times the user is clicking anywhere on the site contents
     useEffect(() => {
-        if (onInputEntered == null) {
+        if (handleGlobalAndPageSpecificCommands == null) {
             return;
         }
 
@@ -35,7 +36,7 @@ const TerminalComponent = ({prompt, children, initialInput, onInputEntered, term
         return () => {
             terminal.removeEventListener('click', listener.listener);
         }
-    }, [onInputEntered]);
+    }, [handleGlobalAndPageSpecificCommands]);
 
     /*
      * Utility Functions
@@ -61,19 +62,11 @@ const TerminalComponent = ({prompt, children, initialInput, onInputEntered, term
         document.body.removeChild(span);
         // Return the negative width, since the cursor position is to the left of the input suffix
         return -width;
-    };
-
-    /*
-     * Input Functions
-     */
-
-    const updateInput = (event) => {
-        setInput(event.target.value)
     }
 
-    const handleInput = (event) => {
+    const handleTerminalInput = (event) => {
         if (event.key === "Enter") {
-            onInputEntered(input);
+            handleGlobalAndPageSpecificCommands(input);
             setCursorPosition(0);
             setInput("");
             return;
@@ -114,7 +107,7 @@ const TerminalComponent = ({prompt, children, initialInput, onInputEntered, term
                     <span ref={ cursorRef } className="TerminalCursor" style={{ left: `${cursorPosition + 1}px` }}></span>
                 </div>
             </div>
-            <input className="TerminalHiddenInput" value={ input } autoFocus={ onInputEntered != null } onChange={ updateInput } onKeyDown={ handleInput }/>
+            <input className="TerminalHiddenInput" value={ input } autoFocus={ true } onChange={ (event) => {setInput(event.target.value)} } onKeyDown={ handleTerminalInput }/>
         </div>
       );
 }

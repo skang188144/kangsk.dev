@@ -4,36 +4,50 @@ import './Home.css'
 const Home = () => {
     const prompt = 'guest@kangsk.dev:/home$';
     const initialInput = '';
-    const initialDisplayTitleElements = [
-        '░██╗░░░░░░░██╗███████╗██╗░░░░░░█████╗░░█████╗░███╗░░░███╗███████╗  ████████╗░█████╗░',
-        '░██║░░██╗░░██║██╔════╝██║░░░░░██╔══██╗██╔══██╗████╗░████║██╔════╝  ╚══██╔══╝██╔══██╗',
-        '░╚██╗████╗██╔╝█████╗░░██║░░░░░██║░░╚═╝██║░░██║██╔████╔██║█████╗░░  ░░░██║░░░██║░░██║',
-        '░░████╔═████║░██╔══╝░░██║░░░░░██║░░██╗██║░░██║██║╚██╔╝██║██╔══╝░░  ░░░██║░░░██║░░██║',
-        '░░╚██╔╝░╚██╔╝░███████╗███████╗╚█████╔╝╚█████╔╝██║░╚═╝░██║███████╗  ░░░██║░░░╚█████╔╝',
-        '░░░╚═╝░░░╚═╝░░╚══════╝╚══════╝░╚════╝░░╚════╝░╚═╝░░░░░╚═╝╚══════╝  ░░░╚═╝░░░░╚════╝░',
+    const initialDisplayTitle1 = [
+        '██╗    ██╗███████╗██╗      ██████╗ ██████╗ ███╗   ███╗███████╗    ████████╗ ██████╗    ',
+        '██║    ██║██╔════╝██║     ██╔════╝██╔═══██╗████╗ ████║██╔════╝    ╚══██╔══╝██╔═══██╗   ',
+        '██║ █╗ ██║█████╗  ██║     ██║     ██║   ██║██╔████╔██║█████╗         ██║   ██║   ██║   ',
+        '██║███╗██║██╔══╝  ██║     ██║     ██║   ██║██║╚██╔╝██║██╔══╝         ██║   ██║   ██║   ',
+        '╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗       ██║   ╚██████╔╝   ',
+        ' ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝       ╚═╝    ╚═════╝    '
+        ].map(text => {
+            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text }></div>);
+        });
+    const initialDisplayTitle2 = [
         ' ',
-        '  ██╗░░██╗░█████╗░███╗░░██╗░██████╗░░██████╗██╗░░██╗       ██████╗░███████╗██╗░░░██╗',
-        '  ██║░██╔╝██╔══██╗████╗░██║██╔════╝░██╔════╝██║░██╔╝       ██╔══██╗██╔════╝██║░░░██║',
-        '  █████═╝░███████║██╔██╗██║██║░░██╗░╚█████╗░█████═╝░       ██║░░██║█████╗░░╚██╗░██╔╝',
-        '  ██╔═██╗░██╔══██║██║╚████║██║░░╚██╗░╚═══██╗██╔═██╗░       ██║░░██║██╔══╝░░░╚████╔╝░',
-        '  ██║░╚██╗██║░░██║██║░╚███║╚██████╔╝██████╔╝██║░╚██╗  ██╗  ██████╔╝███████╗░░╚██╔╝░░',
-        '  ╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═════╝░╚═╝░░╚═╝  ╚═╝  ╚═════╝░╚══════╝░░░╚═╝░░░',
-        ' ',
-        ' '].map(text => {
-            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text }> </div>);
+        '██╗  ██╗ █████╗ ███╗   ██╗ ██████╗ ███████╗██╗  ██╗           ██████╗ ███████╗██╗   ██╗',
+        '██║ ██╔╝██╔══██╗████╗  ██║██╔════╝ ██╔════╝██║ ██╔╝           ██╔══██╗██╔════╝██║   ██║',
+        '█████╔╝ ███████║██╔██╗ ██║██║  ███╗███████╗█████╔╝            ██║  ██║█████╗  ██║   ██║',
+        '██╔═██╗ ██╔══██║██║╚██╗██║██║   ██║╚════██║██╔═██╗            ██║  ██║██╔══╝  ╚██╗ ██╔╝',
+        '██║  ██╗██║  ██║██║ ╚████║╚██████╔╝███████║██║  ██╗    ██╗    ██████╔╝███████╗ ╚████╔╝ ',
+        '╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝    ╚═╝    ╚═════╝ ╚══════╝  ╚═══╝  '
+        ].map(text => {
+            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 2450 }></div>);
         });
 
-    const initialDisplayTextElements = [
+    const initialDisplayTitleElements = initialDisplayTitle1.concat(initialDisplayTitle2);
+
+    const initialDisplayText1 = [
+        ' ',
+        ' ',
         'Welcome to kangsk.dev v1814.14',
+        ].map(text => {
+            return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 5200 }></div>);
+        });
+    
+    const initialDisplayText2 = [
         ' ',
         "Type 'help' to view the available list of commands.",
         ' '
-        ].map(text => {
-            return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 2500 }> </div>);
-        });
+    ].map(text => {
+        return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 6200 }></div>);
+    });
+
+    const initialDisplayTextElements = initialDisplayText1.concat(initialDisplayText2);
 
 
-    const getPageSpecificCommandOutput = (command, args) => {
+    const handlePageSpecificCommands = (command, args) => {
         let output = [];
 
         switch (command) {
@@ -86,12 +100,10 @@ const Home = () => {
         <TerminalController
             prompt = { prompt } 
             initialInput = { initialInput }
-            initialDisplayTitleElements = { initialDisplayTitleElements }
-            initialDisplayTextElements = { initialDisplayTextElements }
-            getPageSpecificCommandOutput = { getPageSpecificCommandOutput }
-            overrideInitialDisplayText = { false }
-            overrideInitialDisplayTitle= { false }
-            overrideInitialDisplayElement = { null }/>
+            handlePageSpecificCommands = { handlePageSpecificCommands }>
+                { initialDisplayTitleElements }
+                { initialDisplayTextElements }
+            </TerminalController>
     );
 }
 

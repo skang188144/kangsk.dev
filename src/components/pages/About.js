@@ -1,60 +1,88 @@
-import { useEffect, useRef } from 'react';
 import TerminalController from '../TerminalController';
 import './About.css'
 
 const About = () => {
     const prompt = 'guest@kangsk.dev:/about$';
     const initialInput = '';
-    const initialDisplayTitle = [
-        '░██████╗░█████╗░███╗░░██╗░██████╗░██╗░░██╗██╗░░░██╗███████╗░█████╗░██╗░░██╗',
-        '██╔════╝██╔══██╗████╗░██║██╔════╝░██║░░██║╚██╗░██╔╝██╔════╝██╔══██╗██║░██╔╝',
-        '╚█████╗░███████║██╔██╗██║██║░░██╗░███████║░╚████╔╝░█████╗░░██║░░██║█████═╝░',
-        '░╚═══██╗██╔══██║██║╚████║██║░░╚██╗██╔══██║░░╚██╔╝░░██╔══╝░░██║░░██║██╔═██╗░',
-        '██████╔╝██║░░██║██║░╚███║╚██████╔╝██║░░██║░░░██║░░░███████╗╚█████╔╝██║░╚██╗',
-        '╚═════╝░╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░╚═╝░░╚═╝░░░╚═╝░░░╚══════╝░╚════╝░╚═╝░░╚═╝',
-        ' ',
-        '██╗░░██╗░█████╗░███╗░░██╗░██████╗░',
-        '██║░██╔╝██╔══██╗████╗░██║██╔════╝░',
-        '█████═╝░███████║██╔██╗██║██║░░██╗░',
-        '██╔═██╗░██╔══██║██║╚████║██║░░╚██╗',
-        '██║░╚██╗██║░░██║██║░╚███║╚██████╔╝',
-        '╚═╝░░╚═╝╚═╝░░╚═╝╚═╝░░╚══╝░╚═════╝░',
-        ' ',
-        ' ',
-        ' '
-        // '█▀ █▀█ █▀▀ ▀█▀ █░█░█ ▄▀█ █▀█ █▀▀   █▀▀ █▄░█ █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█',
-        // '▄█ █▄█ █▀░ ░█░ ▀▄▀▄▀ █▀█ █▀▄ ██▄   ██▄ █░▀█ █▄█ █ █░▀█ ██▄ ██▄ █▀▄'
+
+    /*
+     * DISPLAY ONE 
+     */
+    const initialDisplayTitle1 = [
+        '███████╗ █████╗ ███╗   ██╗ ██████╗ ██╗  ██╗██╗   ██╗███████╗ ██████╗ ██╗  ██╗',
+        '██╔════╝██╔══██╗████╗  ██║██╔════╝ ██║  ██║╚██╗ ██╔╝██╔════╝██╔═══██╗██║ ██╔╝',
+        '███████╗███████║██╔██╗ ██║██║  ███╗███████║ ╚████╔╝ █████╗  ██║   ██║█████╔╝ ',
+        '╚════██║██╔══██║██║╚██╗██║██║   ██║██╔══██║  ╚██╔╝  ██╔══╝  ██║   ██║██╔═██╗ ',
+        '███████║██║  ██║██║ ╚████║╚██████╔╝██║  ██║   ██║   ███████╗╚██████╔╝██║  ██╗',
+        '╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚══════╝ ╚═════╝ ╚═╝  ╚═╝'
     ].map(text => {
-        return (<div className="AboutInitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } enableDeleteAnimation='true' deleteAnimationDelay={ 3000 }> </div>);
+        return (<div className="AboutInitialDisplayTitle1" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 1 } enableDeleteAnimation={ 'true' } deleteAnimationGroup={ 2 } deleteAnimationDelay={ 1000 } style={{ height: 0 }}></div>);
     });
 
     const initialDisplayTitle2 = [
-        '██╗    ░█████╗░███╗░░░███╗    ░█████╗░░░░░░░░░░',
-        '██║    ██╔══██╗████╗░████║    ██╔══██╗░░░░░░░░░',
-        '██║    ███████║██╔████╔██║    ███████║░░░░░░░░░',
-        '██║    ██╔══██║██║╚██╔╝██║    ██╔══██║░░░░░░░░░',
-        '██║    ██║░░██║██║░╚═╝░██║    ██║░░██║██╗██╗██╗',
-        '╚═╝    ╚═╝░░╚═╝╚═╝░░░░░╚═╝    ╚═╝░░╚═╝╚═╝╚═╝╚═╝',
-        ' ',
-        ' ',
-        '█▀ █▀█ █▀▀ ▀█▀ █░█░█ ▄▀█ █▀█ █▀▀   █▀▀ █▄░█ █▀▀ █ █▄░█ █▀▀ █▀▀ █▀█',
-        '▄█ █▄█ █▀░ ░█░ ▀▄▀▄▀ █▀█ █▀▄ ██▄   ██▄ █░▀█ █▄█ █ █░▀█ ██▄ ██▄ █▀▄'
+        '                                                                             ',
+        '██╗  ██╗ █████╗ ███╗   ██╗ ██████╗                                           ',
+        '██║ ██╔╝██╔══██╗████╗  ██║██╔════╝                                           ',
+        '█████╔╝ ███████║██╔██╗ ██║██║  ███╗                                          ',
+        '██╔═██╗ ██╔══██║██║╚██╗██║██║   ██║                                          ',
+        '██║  ██╗██║  ██║██║ ╚████║╚██████╔╝                                          ',
+        '╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝                                           '
     ].map(text => {
-        return (<div className="AboutInitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 8000 } enableDeleteAnimation='true' deleteAnimationDelay={ 12000 }></div>);
+        return (<div className="AboutInitialDisplayTitle1" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 2 } enableDeleteAnimation={ 'true' } deleteAnimationGroup={ 2 } deleteAnimationDelay={ 1000 } style={{ height: 0 }}></div>);
     });
 
-    const initialDisplayText = [
-        ' ',
-        "Hi there! I'm Sanghyeok, a third-year computer science student at Boston University.",
-        ' ',
+    const initialDisplayTitleContainer1 = <div className='AboutInitialDisplayTitleContainer1'>{ initialDisplayTitle1 }{ initialDisplayTitle2 }</div>
+    const initialDisplayElements1 = <div className='AboutInitialDisplayTitleAndImageContainer'>{ initialDisplayTitleContainer1 } <img className='AboutHeadshotImage' src='/Headshot.png'></img></div>
+
+    /*
+     * DISPLAY TWO 
+     */
+    const initialDisplayTitle3 = [
+        '██╗     █████╗ ███╗   ███╗     █████╗                      ',
+        '██║    ██╔══██╗████╗ ████║    ██╔══██╗                     ',
+        '██║    ███████║██╔████╔██║    ███████║                     ',
+        '██║    ██╔══██║██║╚██╔╝██║    ██╔══██║                     ',
+        '██║    ██║  ██║██║ ╚═╝ ██║    ██║  ██║    ██╗    ██╗    ██╗',
+        '╚═╝    ╚═╝  ╚═╝╚═╝     ╚═╝    ╚═╝  ╚═╝    ╚═╝    ╚═╝    ╚═╝'
     ].map(text => {
-        return (<div className="AboutInitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 2200 } enableDeleteAnimation='true' deleteAnimationDelay={ 5500 }> </div>);
+        return (<div className="AboutInitialDisplayTitle1" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 3 } ></div>);
     });
 
-    const initialDisplayTitleContainer = <div className='AboutInitialDisplayTitleContainer'>{ initialDisplayTitle } { initialDisplayTitle2 }</div>
-    const initialDisplayTitleAndImageContainer = <div className='AboutInitialDisplayTitleAndImageContainer'>{ initialDisplayTitleContainer } <img className='HeadshotImage' src='/Headshot.jpeg'></img></div>
+    const initialDisplayTitle4 = [
+        '                                                                                                                                                                                                                                               ',
+        '                                                                                                                                                                                                                                               ',
+        '                                                                                                                                                                                                                                               ',
+        '                                                                                                                                                                                                                                               ',
+        '                                                                                                                                                                                                                                               ',
+        ' ██████╗███████╗    ███████╗████████╗██╗   ██╗██████╗ ███████╗███╗   ██╗████████╗     █████╗ ████████╗    ██████╗  ██████╗ ███████╗████████╗ ██████╗ ███╗   ██╗    ██╗   ██╗███╗   ██╗██╗██╗   ██╗███████╗██████╗ ███████╗██╗████████╗██╗   ██╗',
+        '██╔════╝██╔════╝    ██╔════╝╚══██╔══╝██║   ██║██╔══██╗██╔════╝████╗  ██║╚══██╔══╝    ██╔══██╗╚══██╔══╝    ██╔══██╗██╔═══██╗██╔════╝╚══██╔══╝██╔═══██╗████╗  ██║    ██║   ██║████╗  ██║██║██║   ██║██╔════╝██╔══██╗██╔════╝██║╚══██╔══╝╚██╗ ██╔╝',
+        '██║     ███████╗    ███████╗   ██║   ██║   ██║██║  ██║█████╗  ██╔██╗ ██║   ██║       ███████║   ██║       ██████╔╝██║   ██║███████╗   ██║   ██║   ██║██╔██╗ ██║    ██║   ██║██╔██╗ ██║██║██║   ██║█████╗  ██████╔╝███████╗██║   ██║    ╚████╔╝ ',
+        '██║     ╚════██║    ╚════██║   ██║   ██║   ██║██║  ██║██╔══╝  ██║╚██╗██║   ██║       ██╔══██║   ██║       ██╔══██╗██║   ██║╚════██║   ██║   ██║   ██║██║╚██╗██║    ██║   ██║██║╚██╗██║██║╚██╗ ██╔╝██╔══╝  ██╔══██╗╚════██║██║   ██║     ╚██╔╝  ',
+        '╚██████╗███████║    ███████║   ██║   ╚██████╔╝██████╔╝███████╗██║ ╚████║   ██║       ██║  ██║   ██║       ██████╔╝╚██████╔╝███████║   ██║   ╚██████╔╝██║ ╚████║    ╚██████╔╝██║ ╚████║██║ ╚████╔╝ ███████╗██║  ██║███████║██║   ██║      ██║   ',
+        ' ╚═════╝╚══════╝    ╚══════╝   ╚═╝    ╚═════╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝       ╚═╝  ╚═╝   ╚═╝       ╚═════╝  ╚═════╝ ╚══════╝   ╚═╝    ╚═════╝ ╚═╝  ╚══                                                                                  '
+    ].map(text => {
+        return (<div className="AboutInitialDisplayTitle2" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 4 } typeAnimationInterval={ 5 } enableDeleteAnimation='true' deleteAnimationGroup={ 4 } deleteAnimationInterval={ 5 }></div>);
+    });
 
-    const getPageSpecificCommandOutput = (command, args) => {
+    const initialDisplayTitle5 = [
+        '                                                                                                                                        ',
+        '                                                                                                                                        ',
+        '                                                                                                                                        ',
+        '                                                                                                                                        ',
+        '                                                                                                                                        ',
+        '███████╗ ██████╗ ███████╗████████╗██╗    ██╗ █████╗ ██████╗ ███████╗    ███████╗███╗   ██╗ ██████╗ ██╗███╗   ██╗███████╗███████╗██████╗ ',
+        '██╔════╝██╔═══██╗██╔════╝╚══██╔══╝██║    ██║██╔══██╗██╔══██╗██╔════╝    ██╔════╝████╗  ██║██╔════╝ ██║████╗  ██║██╔════╝██╔════╝██╔══██╗',
+        '███████╗██║   ██║█████╗     ██║   ██║ █╗ ██║███████║██████╔╝█████╗      █████╗  ██╔██╗ ██║██║  ███╗██║██╔██╗ ██║█████╗  █████╗  ██████╔╝',
+        '╚════██║██║   ██║██╔══╝     ██║   ██║███╗██║██╔══██║██╔══██╗██╔══╝      ██╔══╝  ██║╚██╗██║██║   ██║██║██║╚██╗██║██╔══╝  ██╔══╝  ██╔══██╗',
+        '███████║╚██████╔╝██║        ██║   ╚███╔███╔╝██║  ██║██║  ██║███████╗    ███████╗██║ ╚████║╚██████╔╝██║██║ ╚████║███████╗███████╗██║  ██║',
+        '╚══════╝ ╚═════╝ ╚═╝        ╚═╝    ╚══╝╚══╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝    ╚══════╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝'
+    ].map(text => {
+        return (<div className="AboutInitialDisplayTitle2" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 5 } typeAnimationInterval={ 5 } enableDeleteAnimation='true' deleteAnimationGroup={ 5 } deleteAnimationInterval={ 5 }></div>);
+    });
+
+    const initialDisplayElements2 = <div className='AboutInitialDisplayTitleContainer1'>{ initialDisplayTitle3 }{ initialDisplayTitle4 } { initialDisplayTitle5 }</div>
+
+    const handlePageSpecificCommands = (command, args) => {
         let output = [];
 
         switch (command) {
@@ -99,13 +127,14 @@ const About = () => {
 
         return output;
     }
-
+    
     return (
         <TerminalController
             prompt = { prompt } 
             initialInput = { initialInput }
-            getPageSpecificCommandOutput = { getPageSpecificCommandOutput }>
-                { initialDisplayTitleAndImageContainer }
+            handlePageSpecificCommands = { handlePageSpecificCommands }>
+                { initialDisplayElements1 }
+                { initialDisplayElements2 }
         </TerminalController>
     );
 }
