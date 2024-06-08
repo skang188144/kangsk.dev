@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TerminalComponent from "./TerminalComponent";
 import './TerminalController.css';
-import { scheduleTypeAnimations } from "../HelperFunctions";
+import { scheduleAnimations, scheduleTypeAnimations } from "../Animations";
 
 const TerminalController = ({prompt, children, initialInput, handlePageSpecificCommands}) => {
     const [terminalLines, setTerminalLines] = useState([]);
@@ -10,7 +10,7 @@ const TerminalController = ({prompt, children, initialInput, handlePageSpecificC
     let navigate = useNavigate();
 
     useEffect(() => {
-        scheduleTypeAnimations();
+        scheduleAnimations();
         // triggerDeleteAnimations();
     }, []);
     

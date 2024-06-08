@@ -12,7 +12,7 @@ const Home = () => {
         '╚███╔███╔╝███████╗███████╗╚██████╗╚██████╔╝██║ ╚═╝ ██║███████╗       ██║   ╚██████╔╝   ',
         ' ╚══╝╚══╝ ╚══════╝╚══════╝ ╚═════╝ ╚═════╝ ╚═╝     ╚═╝╚══════╝       ╚═╝    ╚═════╝    '
         ].map(text => {
-            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text }></div>);
+            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationGroup={ 0 }></div>);
         });
     const initialDisplayTitle2 = [
         ' ',
@@ -23,7 +23,7 @@ const Home = () => {
         '██║  ██╗██║  ██║██║ ╚████║╚██████╔╝███████║██║  ██╗    ██╗    ██████╔╝███████╗ ╚████╔╝ ',
         '╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚══════╝╚═╝  ╚═╝    ╚═╝    ╚═════╝ ╚══════╝  ╚═══╝  '
         ].map(text => {
-            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 2450 }></div>);
+            return (<div className="InitialDisplayTitle" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationGroup={ 1 }></div>);
         });
 
     const initialDisplayTitleElements = initialDisplayTitle1.concat(initialDisplayTitle2);
@@ -33,7 +33,7 @@ const Home = () => {
         ' ',
         'Welcome to kangsk.dev v1814.14',
         ].map(text => {
-            return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 5200 }></div>);
+            return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationGroup={ 2 }></div>);
         });
     
     const initialDisplayText2 = [
@@ -41,7 +41,7 @@ const Home = () => {
         "Type 'help' to view the available list of commands.",
         ' '
     ].map(text => {
-        return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationDelay={ 6200 }></div>);
+        return (<div className="InitialDisplayText" enableTypeAnimation='true' typeAnimationText={ text } typeAnimationGroup={ 3 }></div>);
     });
 
     const initialDisplayTextElements = initialDisplayText1.concat(initialDisplayText2);

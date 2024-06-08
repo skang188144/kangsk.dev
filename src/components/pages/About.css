@@ -1,28 +1,21 @@
 @import '../TerminalController.css';
 
-.AboutInitialDisplayTitleContainer1 {
+.AboutLeftColumnContainer {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
+    width: 331.1px;
+    margin-right: 50px;
 }
 
-.AboutInitialDisplayTitleAndImageContainer {
+.AboutRowContainer {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
 }
 
-.AboutInitialDisplayTitle1 {
-    font-size: 19px;
-    display: inline-block;
-    overflow: hidden;
-    white-space: pre;
-    flex-shrink: 0;
-    flex-grow: 0;
-}
-
-.AboutInitialDisplayTitle2 {
-    font-size: 6px;
+.AboutTitle {
+    font-size: 14px;
     display: inline-block;
     overflow: hidden;
     white-space: pre;
@@ -32,8 +25,261 @@
 
 .AboutHeadshotImage {
     margin-left: auto;
+    margin-right: auto;
     width: 300px;
-    animation: pop-in 0.75s, pop-out 0.75s;
-    animation-delay: 0s, 7.9s;
+    animation: pop-in 0.75s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.AboutSocialMediaIconRowContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    padding-bottom: 50px;
+    justify-content: center;
+}
+
+.AboutGitHubIconContainer {
+    width: 30px;
+    padding: 0;
+    margin-right: 15px;
+    animation: pop-in 0.75s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.AboutLinkedInIconContainer {
+    width: 30px;
+    padding: 0;
+    margin-left: 15px;
+    animation: pop-in 0.75s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.AboutGitHubIcon {
+    width: 30px;
+    animation: pop-in 0.75s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.AboutLinkedInIcon {
+    width: 30px;
+    animation: pop-in 0.75s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+}
+
+.AboutRightColumnContainer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.AboutText {
+    font-size: 18px;
+    color: #f5c743;
+    display: inline-block;
+    overflow: hidden;
+    white-space: pre;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+.AboutTechnologiesIconRowContainer1 {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.AboutTechnologiesIconRowContainer2 {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.AboutJavaIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutJavaIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 12s;
+    animation-fill-mode: forwards;
+}
+
+.AboutPythonIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutPythonIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 12.2s;
+    animation-fill-mode: forwards;
+}
+
+.AboutCIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutCIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 12.4s;
+    animation-fill-mode: forwards;
+}
+
+.AboutOCamlIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutOCamlIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 12.6s;
+    animation-fill-mode: forwards;
+}
+
+.AboutJavascriptIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutJavascriptIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 12.8s;
+    animation-fill-mode: forwards;
+}
+
+.AboutHTMLIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutHTMLIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 13s;
+    animation-fill-mode: forwards;
+}
+
+.AboutCSSIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutCSSIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 13.2s;
+    animation-fill-mode: forwards;
+}
+
+.AboutReactIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutReactIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 13.4s;
+    animation-fill-mode: forwards;
+}
+
+.AboutAndroidIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutAndroidIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 13.6s;
+    animation-fill-mode: forwards;
+}
+
+.AboutSpringBootIconContainer {
+    display: flex;
+    flex-shrink: 0;
+    width: 50px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.AboutSpringBootIcon {
+    width: 50px;
+    opacity: 0;
+    animation: pop-in-tech-icon 0.75s;
+    animation-delay: 13.8s;
     animation-fill-mode: forwards;
 }

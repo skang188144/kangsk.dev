@@ -1,12 +1,12 @@
 .Terminal {
-    background: #1f1e1d;
+    background: #263747;
     color: white;
     font-size: 18px;
     font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
     border-radius: 4px;
     margin: 25px 45px 25px 45px;
     position: relative;
-    border: 1px solid white;
+    border: 1px solid #f5c743;
     min-height: 500px;
     max-height: calc(100vh - 90px);
 }
