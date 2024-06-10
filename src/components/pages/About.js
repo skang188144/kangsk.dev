@@ -5,9 +5,6 @@ const About = () => {
     const prompt = 'guest@kangsk.dev:/about$';
     const initialInput = '';
 
-    /*
-     * DISPLAY ONE 
-     */
     const title = [
         ' █████╗ ██████╗  ██████╗ ██╗   ██╗████████╗',
         '██╔══██╗██╔══██╗██╔═══██╗██║   ██║╚══██╔══╝',
@@ -16,7 +13,7 @@ const About = () => {
         '██║  ██║██████╔╝╚██████╔╝╚██████╔╝   ██║   ',
         '╚═╝  ╚═╝╚═════╝  ╚═════╝  ╚═════╝    ╚═╝   '
     ].map(text => {
-        return (<div className="AboutTitle" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 0 }></div>);
+        return (<div className="AboutTitle" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 0 }>{ ' '.repeat(43) }</div>);
     });
 
     const socialMediaIconRowContainer = 
@@ -27,13 +24,14 @@ const About = () => {
             <a className='AboutLinkedInIconContainer' href='https://www.linkedin.com/in/kangsk'>
                 <img className='AboutLinkedInIcon' src='/LinkedInIcon.png'></img>
             </a>
-        </div>
+        </div>;
+
     const leftColumnContainer = 
         <div className='AboutLeftColumnContainer'>
             { title }
             <img className='AboutHeadshotImage' src='/Headshot.png'></img>
             { socialMediaIconRowContainer }
-        </div>
+        </div>;
 
     const text1 = [
         ' ',
@@ -141,13 +139,13 @@ const About = () => {
             { text8 }
             { technologiesIconRowContainer1 }
             { technologiesIconRowContainer2 }
-        </div>
+        </div>;
 
     const rowContainer = 
         <div className='AboutRowContainer'>
             { leftColumnContainer }
             { rightColumnContainer }
-        </div>
+        </div>;
 
     const handlePageSpecificCommands = (command, args) => {
         let output = [];
@@ -168,12 +166,12 @@ const About = () => {
                 output.push({text: '  projects', color: '#f5c743'});
                 output.push({text: '    Change the current working directory to /projects. Contains information about my personal projects.'});
                 output.push({text: ' '});
-                output.push({text: '  pokemon-ai', color: '#f5c743'});
-                output.push({text: '    Change the current working directory to /pokemon-ai. Watch an AI play Pokemon!'});
-                output.push({text: ' '});
-                output.push({text: '  terminal', color: '#f5c743'});
-                output.push({text: '    Change the current working directory to /terminal. Access a real Linux terminal.'});
-                output.push({text: ' '});
+                // output.push({text: '  pokemon-ai', color: '#f5c743'});
+                // output.push({text: '    Change the current working directory to /pokemon-ai. Watch an AI play Pokemon!'});
+                // output.push({text: ' '});
+                // output.push({text: '  terminal', color: '#f5c743'});
+                // output.push({text: '    Change the current working directory to /terminal. Access a real Linux terminal.'});
+                // output.push({text: ' '});
                 output.push({text: 'Miscellaneous Information:', color: '#f5c743'});
                 output.push({text: ' '})
                 output.push({text: '  socials [-a]', color: '#f5c743'});
@@ -201,7 +199,6 @@ const About = () => {
             initialInput = { initialInput }
             handlePageSpecificCommands = { handlePageSpecificCommands }>
                 { rowContainer }
-                {/* { initialDisplayElements2 } */}
         </TerminalController>
     );
 }

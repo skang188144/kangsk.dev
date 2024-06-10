@@ -1,16 +1,68 @@
-.Terminal {
-    background-color: transparent;
-    color: white;
-    height: 100vh;
-    padding: 1rem;
-    box-sizing: border-box;
+@import '../TerminalController.css';
+
+.ProjectsTitle {
+    font-size: 0.875rem;
+    display: inline-block;
+    overflow: hidden;
+    white-space: pre;
+    flex-shrink: 0;
+    flex-grow: 0;
 }
 
-input {
-    border: none;
-    outline: none;
-    margin: 0;
-    padding: 0;
-    background-color: transparent;
-    color: white;
+.ProjectsTitleColumnContainer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: inherit;
+}
+
+.ProjectsBodyColumnContainer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: inherit;
+}
+
+.ProjectsProjectRowContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    width: inherit;
+}
+
+.ProjectsProjectContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.ProjectsProjectContentContainer {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.ProjectsProjectText {
+    white-space: pre;
+    font-size: 1.125rem;
+    color: #f5c743;
+}
+
+.ProjectsProjectTechnologiesRowContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+}
+
+.ProjectsProjectTechnologyImage {
+    width: 40px;
+}
+
+.ProjectsProjectImage {
+    margin-right: auto;
+    width: 150px;
+    animation: pop-in 0.75s;
+    animation-delay: 0s;
+    animation-fill-mode: forwards;
+    margin-right: 45px;
 }

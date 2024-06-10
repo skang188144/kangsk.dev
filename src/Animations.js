@@ -8,11 +8,9 @@ const triggerTypeAnimationTask = (element, resolve) => {
         interval = 20;
     }
 
-    element.style.height = 'fit-content';
-
     const typeAnimationTask = setInterval((element, text, resolve) => {
         if (index < text.length) {
-            element.innerHTML = element.innerHTML + text.charAt(index);
+            element.innerHTML = element.innerHTML.slice(0, index) + text.charAt(index) + element.innerHTML.slice(index + 1, text.length);
             index++;
         } else {
             clearInterval(typeAnimationTask);

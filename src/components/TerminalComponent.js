@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from "react"
 import './TerminalComponent.css';
-import { getChildElementsByAttribute } from "../Animations";
 
 const TerminalComponent = ({prompt, children, initialInput, handleGlobalAndPageSpecificCommands, terminalLines}) => {
     const [input, setInput] = useState('');
