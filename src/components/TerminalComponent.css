@@ -5,27 +5,26 @@
     font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
     border-radius: 4px;
     margin: 25px 45px 25px 45px;
+    padding: 16px;
     position: relative;
     border: 1px solid #f5c743;
-    width: calc(100vw - 90px);
-    min-width: 934px;
+    width: calc(100vw - 124px);
+    min-width: 551px;
     height: inherit;
-    max-height: calc(100vh - 90px);
+    max-height: calc(100vh - 124px);
 }
   
 .TerminalContainer {
     overflow: auto;
     display: flex;
-    height: calc(100vh - 84px);
-    width: calc(100vw - 124px);
-    min-width: 900px;
     flex-direction: column;
-    max-height: calc(100vh - 124px);
+    height: calc(100vh - 124px);
+    width: calc(100vw - 124px);
+    min-width: 551px;
 }
 
 .TerminalLine {
-    white-space: break-spaces;
-    overflow-wrap: break-word;
+    white-space: pre;
 }
   
 .TerminalLine:before {

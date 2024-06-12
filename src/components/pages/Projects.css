@@ -3,24 +3,22 @@
 .ProjectsTitle {
     font-size: 0.875rem;
     display: inline-block;
-    overflow: hidden;
     white-space: pre;
     flex-shrink: 0;
     flex-grow: 0;
+    width: inherit;
 }
 
 .ProjectsTitleColumnContainer {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: inherit;
 }
 
 .ProjectsBodyColumnContainer {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    width: inherit;
 }
 
 .ProjectsProjectRowContainer {
@@ -30,10 +28,44 @@
     width: inherit;
 }
 
-.ProjectsProjectContainer {
+.ProjectsDetoxProjectContainer {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+}
+
+.ProjectsTidalfyProjectContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+}
+
+.ProjectsKangskDevProjectContainer {
+    display: flex;
+    flex-direction: row;
+    flex-shrink: 0;
+    margin-top: 10px;
+    padding-left: 0px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
 }
 
 .ProjectsProjectContentContainer {
@@ -52,17 +84,28 @@
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
+    margin-top: auto;
+    margin-bottom: auto;
 }
 
 .ProjectsProjectTechnologyImage {
     width: 40px;
+    margin-right: 12.5px;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
+    animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .ProjectsProjectImage {
-    margin-right: auto;
     width: 150px;
-    animation: pop-in 0.75s;
-    animation-delay: 0s;
+    margin-right: 15px;
+    animation: scale-in-center 0.3s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
-    margin-right: 45px;
+    -webkit-animation: scale-in-center 0.3s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }

@@ -1,6 +1,8 @@
+import './components/TerminalController.css'
+
 const triggerTypeAnimationTask = (element, resolve) => {
-    const text = element.getAttribute('typeAnimationText');
-    let interval = element.getAttribute('typeAnimationInterval');
+    const text = element.getAttribute('typeanimationtext');
+    let interval = element.getAttribute('typeanimationinterval');
 
     let index = 0;
 
@@ -23,7 +25,7 @@ const triggerTypeAnimationTask = (element, resolve) => {
 }
 
 const triggerDeleteAnimationTask = (element, resolve) => {
-    let interval = element.getAttribute('deleteAnimationInterval');
+    let interval = element.getAttribute('deleteanimationinterval');
 
     if (interval === null) {
         interval = 20;
@@ -42,11 +44,20 @@ const triggerDeleteAnimationTask = (element, resolve) => {
     }, interval, element, resolve);
 }
 
+const triggerCSSAnimationTask = (element, resolve) => {
+    element.style.animationPlayState = 'running';
+    element.style.webkitAnimationPlayState = 'running';
+
+    if (resolve !== undefined && resolve !== null) {
+        resolve();
+    }
+}
+
 async function triggerTypeAnimations (elements) {
     let currentDelay = -1;
 
     for (let i = 0; i < elements.length; i++) {
-        let delay = elements[i].getAttribute('typeAnimationDelay');
+        let delay = elements[i].getAttribute('typeanimationdelay');
 
         if (delay === null) {
             delay = 0;
@@ -69,7 +80,7 @@ async function triggerDeleteAnimations (elements) {
     let currentDelay = -1;
 
     for (let i = 0; i < elements.length; i++) {
-        let delay = elements[i].getAttribute('deleteAnimationDelay');
+        let delay = elements[i].getAttribute('deleteanimationdelay');
 
         if (delay === null) {
             delay = 0;
@@ -88,34 +99,63 @@ async function triggerDeleteAnimations (elements) {
     }
 }
 
+async function triggerCSSAnimations (elements) {
+    let currentDelay = -1;
+
+    for (let i = 0; i < elements.length; i++) {
+        let delay = elements[i].getAttribute('cssanimationdelay');
+
+        if (delay === null) {
+            delay = 0;
+        } else if (delay !== currentDelay) {
+            await new Promise((resolve) => setTimeout(resolve, delay));
+            currentDelay = delay;
+        }
+
+        if (i === elements.length - 1) {
+            return new Promise((resolve) => {
+                triggerCSSAnimationTask(elements[i], resolve);
+            });
+        }
+
+        triggerCSSAnimationTask(elements[i]);
+    }
+}
+
 export async function scheduleAnimations () {
-    const typeAnimationElements = document.body.querySelectorAll('[enableTypeAnimation=true]');
-    const deleteAnimationElements = document.body.querySelectorAll('[enableDeleteAnimation=true]');
+    const typeAnimationElements = document.body.querySelectorAll('[enabletypeanimation=true]');
+    const deleteAnimationElements = document.body.querySelectorAll('[enabledeleteanimation=true]');
+    const cssAnimationElements = document.body.querySelectorAll('[enablecssanimation=true]')
 
     let typeAnimationElementsByGroup = [];
     let deleteAnimationElementsByGroup = [];
+    let cssAnimationElementsByGroup = [];
 
     let numGroups = 0;
 
     for (const element of typeAnimationElements) {
-        if (typeAnimationElementsByGroup[element.getAttribute('typeAnimationGroup')] === undefined) {
-            typeAnimationElementsByGroup[element.getAttribute('typeAnimationGroup')] = [];
+        if (typeAnimationElementsByGroup[element.getAttribute('typeanimationgroup')] === undefined) {
+            typeAnimationElementsByGroup[element.getAttribute('typeanimationgroup')] = [];
         }
-        typeAnimationElementsByGroup[element.getAttribute('typeAnimationGroup')].push(element);
+        typeAnimationElementsByGroup[element.getAttribute('typeanimationgroup')].push(element);
     }
 
     for (const element of deleteAnimationElements) {
-        if (deleteAnimationElementsByGroup[element.getAttribute('deleteAnimationGroup')] === undefined) {
-            deleteAnimationElementsByGroup[element.getAttribute('deleteAnimationGroup')] = [];
+        if (deleteAnimationElementsByGroup[element.getAttribute('deleteanimationgroup')] === undefined) {
+            deleteAnimationElementsByGroup[element.getAttribute('deleteanimationgroup')] = [];
         }
-        deleteAnimationElementsByGroup[element.getAttribute('deleteAnimationGroup')].push(element);
+        deleteAnimationElementsByGroup[element.getAttribute('deleteanimationgroup')].push(element);
     }
 
-    if (typeAnimationElementsByGroup.length > deleteAnimationElementsByGroup.length) {
-        numGroups = typeAnimationElementsByGroup.length;
-    } else {
-        numGroups = deleteAnimationElementsByGroup.length;
+    for (const element of cssAnimationElements) {
+        if (cssAnimationElementsByGroup[element.getAttribute('cssanimationgroup')] === undefined) {
+            cssAnimationElementsByGroup[element.getAttribute('cssanimationgroup')] = [];
+        }
+
+        cssAnimationElementsByGroup[element.getAttribute('cssanimationgroup')].push(element);
     }
+
+    numGroups = Math.max(typeAnimationElementsByGroup.length, deleteAnimationElementsByGroup.length, cssAnimationElementsByGroup.length);
 
     for (let i = 0; i < numGroups; i++) {
         if (typeAnimationElementsByGroup[i] !== undefined && typeAnimationElementsByGroup[i] !== null && typeAnimationElementsByGroup[i].length !== 0) {
@@ -125,10 +165,14 @@ export async function scheduleAnimations () {
         if (deleteAnimationElementsByGroup[i] !== undefined && deleteAnimationElementsByGroup[i] !== null && deleteAnimationElementsByGroup[i].length !== 0) {
             await triggerDeleteAnimations(deleteAnimationElementsByGroup[i]);
         }
+
+        if (cssAnimationElementsByGroup[i] !== undefined && cssAnimationElementsByGroup[i] !== null && cssAnimationElementsByGroup[i].length !== 0) {
+            await triggerCSSAnimations(cssAnimationElementsByGroup[i]);
+        }
     }
 }
 
-// const triggerTypeAnimationTask = (nextElements, currentElement, typeAnimationText, typeAnimationInterval, typeAnimationGroup, lastElementOfGroup, deleteAnimationElements) => {
+// const triggerTypeAnimationTask = (nextElements, currentElement, typeanimationtext, typeanimationinterval, typeanimationgroup, lastElementOfGroup, deleteAnimationElements) => {
 //     let currentAnimationCharIndex = 0;
 
 //     currentElement.style.height = 'fit-content';
@@ -141,9 +185,9 @@ export async function scheduleAnimations () {
 //             clearInterval(typeAnimationTask);
 
 //             if (lastElementOfGroup && nextElements.length !== 0) {
-//                 await triggerDeleteAnimations(deleteAnimationElements, typeAnimationGroup);
+//                 await triggerDeleteAnimations(deleteAnimationElements, typeanimationgroup);
 
-//                 let nextGroupDelay = nextElements[0].getAttribute('typeAnimationDelay');
+//                 let nextGroupDelay = nextElements[0].getAttribute('typeanimationdelay');
 
 //                 setTimeout((elements) => {
 //                     triggerTypeAnimations(elements, deleteAnimationElements)
@@ -151,10 +195,10 @@ export async function scheduleAnimations () {
 
 //                 return;
 //             } else if (lastElementOfGroup && nextElements.length === 0) {
-//                 await triggerDeleteAnimations(deleteAnimationElements, typeAnimationGroup);
+//                 await triggerDeleteAnimations(deleteAnimationElements, typeanimationgroup);
 //             }
 //         }
-//     }, typeAnimationInterval, nextElements, currentElement, typeAnimationText, lastElementOfGroup);
+//     }, typeanimationinterval, nextElements, currentElement, typeanimationtext, lastElementOfGroup);
 // }
 
 // const triggerDeleteAnimationTask = (element, interval, resolve) => {    
@@ -169,7 +213,7 @@ export async function scheduleAnimations () {
 // }
 
 // const triggerTypeAnimations = (elements, deleteAnimationElements) => {
-//     const firstElementDelay = elements[0].getAttribute('typeAnimationDelay');
+//     const firstElementDelay = elements[0].getAttribute('typeanimationdelay');
 //     let firstGroupDelay = -1;
 
 //     if (firstElementDelay === 0 || firstElementDelay === null) {
@@ -179,25 +223,25 @@ export async function scheduleAnimations () {
 //     for (let i = 0; i < elements.length; i++) {
 //         const element = elements[i];
 
-//         const typeAnimationGroup = element.getAttribute('typeAnimationGroup');
+//         const typeanimationgroup = element.getAttribute('typeanimationgroup');
 
-//         let typeAnimationText = element.getAttribute('typeAnimationText');
+//         let typeanimationtext = element.getAttribute('typeanimationtext');
 
-//         let typeAnimationDelay = element.getAttribute('typeAnimationDelay');
-//         let typeAnimationInterval = element.getAttribute('typeAnimationInterval');
+//         let typeAnimationDelay = element.getAttribute('typeanimationdelay');
+//         let typeanimationinterval = element.getAttribute('typeanimationinterval');
 
 //         let lastElementOfGroup = false;
 
 //         let enableDeleteAnimation = element.getAttribute('enableDeleteAnimation');
-//         let deleteAnimationDelay = element.getAttribute('deleteAnimationDelay');
-//         let deleteAnimationInterval = element.getAttribute('deleteAnimationInterval');
+//         let deleteAnimationDelay = element.getAttribute('deleteanimationdelay');
+//         let deleteAnimationInterval = element.getAttribute('deleteanimationinterval');
         
-//         if (i === elements.length - 1 || typeAnimationGroup !== elements[i + 1].getAttribute('typeAnimationGroup')) {
+//         if (i === elements.length - 1 || typeanimationgroup !== elements[i + 1].getAttribute('typeanimationgroup')) {
 //             lastElementOfGroup = true;
 //         }
 
-//         if (typeAnimationInterval === null) {
-//             typeAnimationInterval = 20;
+//         if (typeanimationinterval === null) {
+//             typeanimationinterval = 20;
 //         }
 
 //         if (deleteAnimationInterval === null) {
@@ -217,11 +261,11 @@ export async function scheduleAnimations () {
 //         }
 
 //         if (firstGroupDelay !== 0 && firstGroupDelay === typeAnimationDelay) {
-//             setTimeout((elements, element, typeAnimationText, typeAnimationInterval, typeAnimationGroup, lastElementOfGroup, deleteAnimationElements) => {
-//                 triggerTypeAnimationTask(elements.slice(i + 1), element, typeAnimationText, typeAnimationInterval, typeAnimationGroup, lastElementOfGroup, deleteAnimationElements);
-//             }, typeAnimationDelay, elements, element, typeAnimationText, typeAnimationInterval, typeAnimationGroup, lastElementOfGroup, deleteAnimationElements);
+//             setTimeout((elements, element, typeanimationtext, typeanimationinterval, typeanimationgroup, lastElementOfGroup, deleteAnimationElements) => {
+//                 triggerTypeAnimationTask(elements.slice(i + 1), element, typeanimationtext, typeanimationinterval, typeanimationgroup, lastElementOfGroup, deleteAnimationElements);
+//             }, typeAnimationDelay, elements, element, typeanimationtext, typeanimationinterval, typeanimationgroup, lastElementOfGroup, deleteAnimationElements);
 //         } else {
-//             triggerTypeAnimationTask(elements.slice(i + 1), element, typeAnimationText, typeAnimationInterval, typeAnimationGroup, lastElementOfGroup, deleteAnimationElements);
+//             triggerTypeAnimationTask(elements.slice(i + 1), element, typeanimationtext, typeanimationinterval, typeanimationgroup, lastElementOfGroup, deleteAnimationElements);
 //         }
 
 //         if (lastElementOfGroup) {
@@ -235,8 +279,8 @@ export async function scheduleAnimations () {
 //         let deleteAnimationTaskTriggered = false;
 
 //         for (const element of elements) {
-//             let delay = element.getAttribute('deleteAnimationDelay');
-//             let interval = element.getAttribute('deleteAnimationInterval');
+//             let delay = element.getAttribute('deleteanimationdelay');
+//             let interval = element.getAttribute('deleteanimationinterval');
         
 //             if (delay === null) {
 //                 delay = 0;
@@ -246,7 +290,7 @@ export async function scheduleAnimations () {
 //                 interval = 20;
 //             }
     
-//             if (element.getAttribute('deleteAnimationGroup') === deleteAnimationGroup) {
+//             if (element.getAttribute('deleteanimationgroup') === deleteAnimationGroup) {
 //                 console.log(deleteAnimationGroup);
 
 //                 deleteAnimationTaskTriggered = true;

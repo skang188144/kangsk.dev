@@ -3,21 +3,18 @@
 .AboutLeftColumnContainer {
     display: flex;
     flex-direction: column;
-    flex-shrink: 0;
     width: fit-content;
-    margin-right: 50px;
 }
 
 .AboutRowContainer {
     display: flex;
     flex-direction: row;
-    flex-shrink: 0;
+    width: inherit;
 }
 
 .AboutTitle {
     font-size: 0.875rem;
     display: inline-block;
-    overflow: hidden;
     white-space: pre;
     flex-shrink: 0;
     flex-grow: 0;
@@ -27,9 +24,12 @@
     margin-left: auto;
     margin-right: auto;
     width: 300px;
-    animation: pop-in 0.75s;
-    animation-delay: 0s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutSocialMediaIconRowContainer {
@@ -44,32 +44,32 @@
     width: 30px;
     padding: 0;
     margin-right: 15px;
-    animation: pop-in 0.75s;
-    animation-delay: 0s;
-    animation-fill-mode: forwards;
 }
 
 .AboutLinkedInIconContainer {
     width: 30px;
     padding: 0;
     margin-left: 15px;
-    animation: pop-in 0.75s;
-    animation-delay: 0s;
-    animation-fill-mode: forwards;
 }
 
 .AboutGitHubIcon {
     width: 30px;
-    animation: pop-in 0.75s;
-    animation-delay: 0s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutLinkedInIcon {
     width: 30px;
-    animation: pop-in 0.75s;
-    animation-delay: 0s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutRightColumnContainer {
@@ -77,6 +77,8 @@
     flex-direction: column;
     flex-shrink: 0;
     width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .AboutText {
@@ -118,9 +120,12 @@
 .AboutJavaIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 12s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutPythonIconContainer {
@@ -136,9 +141,12 @@
 .AboutPythonIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 12.2s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutCIconContainer {
@@ -154,9 +162,12 @@
 .AboutCIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 12.4s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutOCamlIconContainer {
@@ -172,9 +183,12 @@
 .AboutOCamlIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 12.6s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutJavascriptIconContainer {
@@ -190,9 +204,12 @@
 .AboutJavascriptIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 12.8s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutHTMLIconContainer {
@@ -208,9 +225,12 @@
 .AboutHTMLIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 13s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutCSSIconContainer {
@@ -226,9 +246,12 @@
 .AboutCSSIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 13.2s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutReactIconContainer {
@@ -244,9 +267,12 @@
 .AboutReactIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 13.4s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutAndroidIconContainer {
@@ -262,9 +288,12 @@
 .AboutAndroidIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 13.6s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }
 
 .AboutSpringBootIconContainer {
@@ -280,7 +309,10 @@
 .AboutSpringBootIcon {
     width: 50px;
     opacity: 0;
-    animation: pop-in 0.75s;
-    animation-delay: 13.8s;
+    animation: scale-in-center 0.5s;
+    animation-play-state: paused;
     animation-fill-mode: forwards;
+    -webkit-animation: scale-in-center 0.5s;
+    -webkit-animation-play-state: paused;
+    -webkit-animation-fill-mode: forwards;
 }

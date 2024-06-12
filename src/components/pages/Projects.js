@@ -15,8 +15,8 @@ const Projects = () => {
         '██╔═══╝ ██╔══██╗██║   ██║██   ██║██╔══╝  ██║        ██║   ╚════██║',
         '██║     ██║  ██║╚██████╔╝╚█████╔╝███████╗╚██████╗   ██║   ███████║',
         '╚═╝     ╚═╝  ╚═╝ ╚═════╝  ╚════╝ ╚══════╝ ╚═════╝   ╚═╝   ╚══════╝'
-    ].map(text => {
-        return (<div className="ProjectsTitle" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 0 }></div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsTitle" key={'ProjectsTitle1Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 0 }></div>);
     });
 
     const titleColumnContainer = 
@@ -30,26 +30,26 @@ const Projects = () => {
 
     const project1Text1 = [
         'A digital wellbeing Android application',
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 1 }>{ ' '.repeat(39) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject1Text1Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 1 } typeanimationdelay={ 500 }>{ ' '.repeat(39) }</div>);
     });
 
     const project1Text2 = [
         'dedicated to empowering users to regain',
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 2 }>{ ' '.repeat(39) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject1Text2Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 2 }>{ ' '.repeat(39) }</div>);
     });
 
     const project1Text3 = [
         'control of their digital lives.'
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 3 }>{ ' '.repeat(39) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject1Text3Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 3 }>{ ' '.repeat(39) }</div>);
     });
 
     const project1TechnologiesRowContainer =
         <div className='ProjectsProjectTechnologiesRowContainer'>
-            <img className='ProjectsProjectTechnologyImage' src='/JavaIcon.png'></img>
-            <img className='ProjectsProjectTechnologyImage' src='AndroidIcon.png'></img>
+            <img className='ProjectsProjectTechnologyImage' src='/JavaIcon.png' alt='Java Icon' enablecssanimation='true' cssanimationgroup={ 3 } cssanimationdelay={ 300 }/>
+            <img className='ProjectsProjectTechnologyImage' src='/AndroidIcon.png' alt='Android Icon' enablecssanimation='true' cssanimationgroup={ 4 } cssanimationdelay={ 150 }/>
         </div>
 
     const projectContentsContainer1 = 
@@ -61,26 +61,26 @@ const Projects = () => {
         </div>;
 
     const projectContainer1 = 
-        <div className='ProjectsProjectContainer'>
-            <img className='ProjectsProjectImage' src='DetoxIcon.png'></img>
+        <div className='ProjectsDetoxProjectContainer'>
+            <img className='ProjectsProjectImage' src='/DetoxIcon.png' alt='Detox Icon' enablecssanimation='true' cssanimationgroup={ 0 } cssanimationdelay={ 150 }/>
             { projectContentsContainer1 }
         </div>;
 
     const project2Text1 = [
         'A tool for the migration of Daily Mix'
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 4 }>{ ' '.repeat(37) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject2Text1Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 6 } typeanimationdelay={ 500 }>{ ' '.repeat(37) }</div>);
     });
 
     const project2Text2 = [
         'playlists from Spotify to TIDAL.'
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 5 }>{ ' '.repeat(37) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject2Text2Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 7 }>{ ' '.repeat(37) }</div>);
     });
 
     const project2TechnologiesRowContainer =
         <div className='ProjectsProjectTechnologiesRowContainer'>
-            <img className='ProjectsProjectTechnologyImage' src='/PythonIcon.png'></img>
+            <img className='ProjectsProjectTechnologyImage' src='/PythonIcon.png' alt='Python Icon' enablecssanimation='true' cssanimationgroup={ 7 } cssanimationdelay={ 300 }/>
         </div>
     
     const projectContentContainer2 =
@@ -91,29 +91,29 @@ const Projects = () => {
         </div>;
 
     const projectContainer2 = 
-        <div className='ProjectsProjectContainer'>
-            <img className='ProjectsProjectImage' src='TidalfyIcon.png'></img>
+        <div className='ProjectsTidalfyProjectContainer'>
+            <img className='ProjectsProjectImage' src='/TidalfyIcon.png' alt='Tidalfy Icon' enablecssanimation='true' cssanimationgroup={ 5 } cssanimationdelay={ 750 }/>
             { projectContentContainer2 }
         </div>;
 
     const project3Text1 = [
         'A terminal themed developer portfolio'
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 6 }>{ ' '.repeat(35) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject3Text1Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 9 } typeanimationdelay={ 500 }>{ ' '.repeat(35) }</div>);
     });
 
     const project3Text2 = [
         'built to showcase my various projects.'
-    ].map(text => {
-        return (<div className="ProjectsProjectText" enableTypeAnimation={ 'true' } typeAnimationText={ text } typeAnimationGroup={ 7 }>{ ' '.repeat(35) }</div>);
+    ].map((text, index) => {
+        return (<div className="ProjectsProjectText" key={'ProjectsProject3Text2Line' + index.toString()} enabletypeanimation={ 'true' } typeanimationtext={ text } typeanimationgroup={ 10 }>{ ' '.repeat(35) }</div>);
     });
 
     const project3TechnologiesRowContainer =
         <div className='ProjectsProjectTechnologiesRowContainer'>
-            <img className='ProjectsProjectTechnologyImage' src='/ReactIcon.png'></img>
-            <img className='ProjectsProjectTechnologyImage' src='/JavascriptIcon.png'></img>
-            <img className='ProjectsProjectTechnologyImage' src='/HTMLIcon.png'></img>
-            <img className='ProjectsProjectTechnologyImage' src='/CSSIcon.png'></img>
+            <img className='ProjectsProjectTechnologyImage' src='/ReactIcon.png' alt='React Icon' enablecssanimation='true' cssanimationgroup={ 10 } cssanimationdelay={ 300 }/>
+            <img className='ProjectsProjectTechnologyImage' src='/JavascriptIcon.png' alt='Javascript Icon' enablecssanimation='true' cssanimationgroup={ 11 } cssanimationdelay={ 150 }/>
+            <img className='ProjectsProjectTechnologyImage' src='/HTMLIcon.png' alt='HTML Icon' enablecssanimation='true' cssanimationgroup={ 12 } cssanimationdelay={ 150 }/>
+            <img className='ProjectsProjectTechnologyImage' src='/CSSIcon.png' alt='CSS Icon' enablecssanimation='true' cssanimationgroup={ 13 } cssanimationdelay={ 150 }/>
         </div>
     
     const projectContentContainer3 =
@@ -124,8 +124,8 @@ const Projects = () => {
         </div>;
 
     const projectContainer3 = 
-        <div className='ProjectsProjectContainer'>
-            <img className='ProjectsProjectImage' src='KangskDevIcon.png'></img>
+        <div className='ProjectsKangskDevProjectContainer'>
+            <img className='ProjectsProjectImage' src='/KangskDevIcon.png' alt='kangsk.dev Icon' enablecssanimation='true' cssanimationgroup={ 8 } cssanimationdelay={ 750 }/>
             { projectContentContainer3 }
         </div>;
 
@@ -142,7 +142,7 @@ const Projects = () => {
     const projectRowContainer2 =
         <div className='ProjectsProjectRowContainer'>
             { projectContainer3 }
-            { projectContainer4}
+            { projectContainer4 }
         </div>;
 
     const bodyColumnContainer = 
@@ -170,27 +170,18 @@ const Projects = () => {
                 output.push({text: '  projects', color: '#f5c743'});
                 output.push({text: "    You're already here, silly."});
                 output.push({text: ' '});
-                // output.push({text: '  pokemon-ai', color: '#f5c743'});
-                // output.push({text: '    Change the current working directory to /pokemon-ai. Watch an AI play Pokemon!'});
-                // output.push({text: ' '});
-                // output.push({text: '  terminal', color: '#f5c743'});
-                // output.push({text: '    Change the current working directory to /terminal. Access a real Linux terminal.'});
-                // output.push({text: ' '});
-                output.push({text: 'Miscellaneous Information:', color: '#f5c743'});
-                output.push({text: ' '})
-                output.push({text: '  socials [-a]', color: '#f5c743'});
-                output.push({text: '    List all social media handles'})
-                output.push({text: ' '});
                 output.push({text: 'General Commands:', color: '#f5c743'});
                 output.push({text: ' '});
                 output.push({text: '  ls', color: '#f5c743'});
                 output.push({text: "    List the current working directory's contents"});
                 output.push({text: ' '});
-                output.push({text: '  cat [file]', color: '#f5c743'});
-                output.push({text: '    Concatenate files and print on the standard output'});
-                output.push({text: ' '});
                 output.push({text: '  cd [dir]', color: '#f5c743'});
                 output.push({text: '    Change the current working directory to DIR'});
+                output.push({text: ' '})
+                output.push({text: '  socials [-a]', color: '#f5c743'});
+                output.push({text: '    List all social media handles'})
+                break;
+            default:
                 break;
         }
 

@@ -90,6 +90,8 @@ const TerminalComponent = ({prompt, children, initialInput, handleGlobalAndPageS
                 case 'ArrowUp':
                     charsToRightOfCursor = input.slice(0);
                     break;
+                default:
+                    break;
             }
 
             const inputWidth = calculateInputWidth(inputElement, charsToRightOfCursor);
