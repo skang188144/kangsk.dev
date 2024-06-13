@@ -125,7 +125,7 @@ const Projects = () => {
 
     const projectContainer3 = 
         <div className='ProjectsKangskDevProjectContainer'>
-            <img className='ProjectsProjectImage' src='/KangskDevIcon.png' alt='kangsk.dev Icon' enablecssanimation='true' cssanimationgroup={ 8 } cssanimationdelay={ 750 }/>
+            <img className='ProjectsProjectImage' src='/KangskDevIconOG.png' alt='kangsk.dev Icon' enablecssanimation='true' cssanimationgroup={ 8 } cssanimationdelay={ 750 }/>
             { projectContentContainer3 }
         </div>;
 

@@ -46,7 +46,7 @@ a {
     display: block;
     padding-left: 18px;
     height: inherit;
-    width: calc(inherit - 18px);
+    width: calc(max(16vw, 200px) - 18px);
     text-wrap: nowrap;
     align-content: center;
 }
