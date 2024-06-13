@@ -1,7 +1,7 @@
 .Terminal {
     background: #263747;
     color: white;
-    font-size: 1.1rem;
+    font-size: max(1.3vw, 12px);
     font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
     border-radius: 4px;
     margin: 25px 45px 25px 45px;
@@ -9,18 +9,18 @@
     position: relative;
     border: 1px solid #f5c743;
     width: calc(100vw - 124px);
-    min-width: 551px;
+    min-width: 476px;
     height: inherit;
-    max-height: calc(100vh - 124px);
+    max-height: calc(100vh - 129px);
 }
   
 .TerminalContainer {
     overflow: auto;
     display: flex;
     flex-direction: column;
-    height: calc(100vh - 124px);
+    height: calc(100vh - 129px);
     width: calc(100vw - 124px);
-    min-width: 551px;
+    min-width: 476px;
 }
 
 .TerminalLine {

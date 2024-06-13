@@ -1,7 +1,7 @@
 @import '../TerminalController.css';
 
 .ProjectsTitle {
-    font-size: 0.875rem;
+    font-size: max(1.3vw, 12px);
     display: inline-block;
     white-space: pre;
     flex-shrink: 0;
@@ -32,40 +32,40 @@
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-right: 10px;
-    padding-left: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
+    margin-top: max(1.3vw, 12px);
+    margin-bottom: max(0.6vw, 5.5px);
+    margin-right: max(0.6vw, 5.5px);
+    padding-left: 0vw;
+    padding-top: max(0.6vw, 5.5px);
+    padding-bottom: max(0.6vw, 5.5px);
+    padding-right: max(0.6vw, 5.5px);
+    border-radius: max(0.6vw, 5.5px);
 }
 
 .ProjectsTidalfyProjectContainer {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    margin-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    padding-left: 10px;
-    border-radius: 10px;
+    margin-top: max(1.3vw, 12px);
+    margin-bottom: max(0.6vw, 5.5px);
+    margin-left: max(0.6vw, 5.5px);
+    padding-top: max(0.6vw, 5.5px);
+    padding-bottom: max(0.6vw, 5.5px);
+    padding-right: max(0.6vw, 5.5px);
+    padding-left: max(0.6vw, 5.5px);
+    border-radius: max(0.6vw, 5.5px);
 }
 
 .ProjectsKangskDevProjectContainer {
     display: flex;
     flex-direction: row;
     flex-shrink: 0;
-    margin-top: 10px;
-    padding-left: 0px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    border-radius: 10px;
+    margin-top: max(0.6vw, 5.5px);
+    padding-left: 0vw;
+    padding-top: max(0.6vw, 5.5px);
+    padding-bottom: max(0.6vw, 5.5px);
+    padding-right: max(0.6vw, 5.5px);
+    border-radius: max(0.6vw, 5.5px);
 }
 
 .ProjectsProjectContentContainer {
@@ -76,7 +76,7 @@
 
 .ProjectsProjectText {
     white-space: pre;
-    font-size: 1.125rem;
+    font-size: max(1.329vw, 12.267px);
     color: #f5c743;
 }
 
@@ -89,8 +89,8 @@
 }
 
 .ProjectsProjectTechnologyImage {
-    width: 40px;
-    margin-right: 12.5px;
+    width: max(2.6vw, 24px);
+    margin-right: max(0.83vw, 7.6px);
     animation: scale-in-center 0.5s;
     animation-play-state: paused;
     animation-fill-mode: forwards;
@@ -100,8 +100,8 @@
 }
 
 .ProjectsProjectImage {
-    width: 150px;
-    margin-right: 15px;
+    width: max(10vw, 92.3px);
+    margin-right: max(1vw, 9.2px);
     animation: scale-in-center 0.3s;
     animation-play-state: paused;
     animation-fill-mode: forwards;

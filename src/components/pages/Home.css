@@ -4,9 +4,9 @@
     display: inline-block;
     white-space: pre;
     flex-shrink: 0;
-    font-size: 0.875rem;
     overflow: visible;
     width: fit-content;
+    font-size: max(1.3vw, 12px);
 }
 
 .HomeText {
@@ -15,4 +15,5 @@
     flex-shrink: 0;
     overflow: visible;
     width: fit-content;
+    font-size: max(1.3vw, 12px);
 }
