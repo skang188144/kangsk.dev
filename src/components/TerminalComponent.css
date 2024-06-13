@@ -9,7 +9,7 @@
     position: relative;
     border: 1px solid #f5c743;
     width: calc(100vw - 124px);
-    min-width: 476px;
+    min-width: 618.5px;
     height: inherit;
     max-height: calc(100vh - 129px);
 }
@@ -20,7 +20,7 @@
     flex-direction: column;
     height: calc(100vh - 129px);
     width: calc(100vw - 124px);
-    min-width: 476px;
+    min-width: 618.5px;
 }
 
 .TerminalLine {

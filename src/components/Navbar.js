@@ -17,13 +17,13 @@ const Navbar = () => {
                     <li className={location.pathname === '/projects' ? 'Active' : ''}>
                         <Link to="/projects">guest@kangsk: /projects</Link>
                     </li>
-                    {/* <li className={location.pathname === '/pokemon-ai' ? 'Active' : ''}>
-                        <Link to="/pokemon-ai">guest@kangsk: /pokemon-ai</Link>
-                    </li>
-                    <li className={location.pathname === '/terminal' ? 'Active' : ''}>
-                        <Link to="/terminal">guest@kangsk: /terminal</Link>
-                    </li> */}
                 </ul>
+
+                <div className="NavbarWindowButtons">
+                    <button className='RedButton'/>
+                    <button className='YellowButton'/>
+                    <button className='GreenButton'/>
+                </div>
             </nav>
         </>
     );

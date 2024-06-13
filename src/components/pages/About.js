@@ -151,6 +151,17 @@ const About = () => {
         let output = [];
 
         switch (command) {
+            case 'ls':
+                if (args.length > 1) {
+                    output.push({text: args[0] + ": too many arguments. Type 'help " + command + "' for the proper usage."})
+                } else if (args.length === 1 && args[0] !== '-a') {
+                    output.push({text:  args[0] + ": invalid argument. Type 'help " + command + "' for the proper usage."})
+                } else if (args.length === 1 && args[0] === '-a') {
+                    output.push({text: 'home about projects', color: '#f5c743'})
+                } else {
+                    output.push({text: 'home projects', color: '#f5c743'})
+                }
+                break;
             case 'help':
                 output.push({text: 'kangsk.dev bash, version 1.8.14(1)-release (x86_64-pc-linux-gnu)', color: '#0f0'});
                 output.push({text: "These shell commands are defined internally.  Type `help' to see this list.", color: '#0f0'});
@@ -169,13 +180,19 @@ const About = () => {
                 output.push({text: 'General Commands:', color: '#f5c743'});
                 output.push({text: ' '});
                 output.push({text: '  ls', color: '#f5c743'});
-                output.push({text: "    List the current working directory's contents"});
+                output.push({text: "    List the current working directory's contents."});
                 output.push({text: ' '});
                 output.push({text: '  cd [dir]', color: '#f5c743'});
-                output.push({text: '    Change the current working directory to DIR'});
+                output.push({text: '    Change the current working directory to DIR.'});
+                output.push({text: ' '})
+                output.push({text: '  clear', color: '#f5c743'});
+                output.push({text: '    Clear the terminal screen.'})
                 output.push({text: ' '})
                 output.push({text: '  socials [-a]', color: '#f5c743'});
-                output.push({text: '    List all social media handles'})
+                output.push({text: '    List all social media handles.'})
+                output.push({text: ' '})
+                output.push({text: '  source', color: '#f5c743'});
+                output.push({text: '    View the site source code.'})
                 break;
             default:
                 break;

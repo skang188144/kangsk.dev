@@ -5,7 +5,7 @@
     align-items: center;
     height: 45px;
     width: 100vw;
-    min-width: fit-content;
+    min-width: 742.5px;
 }
 
 .Navbar ul {
@@ -15,7 +15,7 @@
     display: flex;
     height: inherit;
     width: inherit;
-    min-width: inherit;
+    min-width: fit-content;
 }
 
 .Navbar ul li {
@@ -23,7 +23,7 @@
     list-style: none;
     font-size: max(0.85vw, 12px);
     border-radius: 10px 10px 0px 0px;
-    width: max(15.5vw, 200px);
+    width: max(16vw, 200px);
     min-width: fit-content;
     height: inherit;
     font-family: 'Fira Mono', Consolas, Menlo, Monaco, 'Courier New', Courier, monospace;
@@ -49,4 +49,33 @@ a {
     width: calc(inherit - 18px);
     text-wrap: nowrap;
     align-content: center;
+}
+
+.NavbarWindowButtons {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    right: 15px;
+    margin-left: 75px;
+    width: 67.5px;
+    gap: 15px;
+}
+
+.NavbarWindowButtons button {
+    width: 12.5px;
+    height: 12.5px;
+    border-radius: 50%;
+    border: 0;
+}
+
+.NavbarWindowButtons button.RedButton {
+    background: #d84f5a;
+}
+
+.NavbarWindowButtons button.YellowButton {
+    background: #eebb21;
+}
+
+.NavbarWindowButtons button.GreenButton {
+    background: #3cca2f;
 }
