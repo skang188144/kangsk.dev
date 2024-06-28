@@ -17,7 +17,7 @@
 
 ## Demo
 <div align="center">
-    <img src="public/Home.png" width="2560" height="1278">
+    <img src="public/Home.png" width="640" height="319.5">
 </div>
 
 ## License
