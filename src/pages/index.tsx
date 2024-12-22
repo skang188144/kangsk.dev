@@ -1,10 +1,11 @@
 import Navbar from '@/components/Navbar';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import ProjectGallery from '@/components/ProjectGallery';
 
 export default function Home() {
     const [activeSection, setActiveSection] = useState('home');
+    const [commentLines, setCommentLines] = useState(0);
     const sections = ['home', 'projects', 'about'];
 
     useEffect(() => {
@@ -21,6 +22,15 @@ export default function Home() {
         };
     }, []);
 
+    useEffect(() => {
+        const paragraphs = document.querySelectorAll('#about p');
+        const text = Array.from(paragraphs)
+            .map(p => (p as HTMLParagraphElement).innerText)
+            .join('\n\n');
+        const containerWidth = window.innerWidth * 0.4;
+        setCommentLines(calculateCommentLines(text, containerWidth));
+    }, []);
+
     const handleArrowScroll = () => {
         const currentIndex = sections.indexOf(activeSection);
         const nextSection = sections[(currentIndex + 1) % sections.length];
@@ -31,29 +41,57 @@ export default function Home() {
         });
     };
 
+    const calculateCommentLines = (text: string, containerWidth: number) => {
+        const div = document.createElement('div');
+        div.style.width = `${containerWidth}px`;
+        div.style.position = 'absolute';
+        div.style.visibility = 'hidden';
+        div.style.fontSize = '2vh';
+        div.style.lineHeight = '1.625';
+        div.style.fontFamily = 'Source Sans 3, sans-serif';
+        div.style.color = 'rgb(75, 85, 99)';
+        div.style.whiteSpace = 'pre-wrap';
+        div.style.wordBreak = 'break-word';
+        div.innerHTML = text;
+        document.body.appendChild(div);
+
+        const height = div.offsetHeight - 1;
+        const computedStyle = window.getComputedStyle(div);
+        const lineHeight = parseFloat(computedStyle.lineHeight);
+        const lines = Math.floor(height / lineHeight);
+
+        document.body.removeChild(div);
+
+        return lines;
+    };
+
     return (
         <>
             <div className="animate-fadeIn overflow-hidden h-[100dvh]">
                 <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
                 
-                <section id="home" className="h-[100dvh] grid place-items-center pl-0 lg:pl-[300px] xl:pl-[400px] bg-gray-25 px-4 lg:px-0">
-                    <div className="relative">
-                        <div className="hidden lg:block absolute right-full mr-12 text-gray-400 text-sm font-mono select-none leading-[4rem]">
-                            <div>1</div>
-                            <div>2</div>
-                            <div>3</div>
-                            <div>4</div>
+                <section id="home" className="h-[100dvh] grid place-items-center pl-0 lg:pl-[25vw] xl:pl-[30vw] bg-gray-25 px-[2vw] lg:px-0">
+                    <div className="relative lg:-ml-[5vw]">
+                        <div className="hidden lg:block absolute right-full mr-[2vw] text-gray-400 text-[2.25vh] font-mono select-none">
+                            <div className="flex flex-col leading-[8vh]">
+                                <div className="h-[8vh] flex items-center">1</div>
+                                <div className="h-[8vh] flex items-center">2</div>
+                                <div className="h-[8vh] flex items-center">3</div>
+                                <div className="h-[8vh] flex items-center">4</div>
+                            </div>
                         </div>
-                        <div className="text-3xl lg:text-6xl font-[Source_Sans_3] font-thin leading-[3rem] lg:leading-[4rem] tracking-wider">
+                        <div className="text-[5vh] lg:text-[7.5vh] font-[Source_Sans_3] font-thin leading-[5.5vh] lg:leading-[8vh] tracking-wider">
                             <div className="text-center lg:text-left">{`<>`}</div>
-                            <div className="ml-4 lg:ml-20 text-center lg:text-left">Hello! I'm <span className="font-normal text-[#012c95]">Sanghyeok</span>,</div>
-                            <div className="ml-4 lg:ml-20 text-center lg:text-left">a full-stack software engineer.</div>
+                            <div className="ml-0 lg:ml-[13vh] text-center lg:text-left">Hello! I'm <span className="font-normal text-[#012c95]">Sanghyeok</span>,</div>
+                            <div className="ml-0 lg:ml-[13vh] text-center lg:text-left">a full-stack software engineer.</div>
                             <div className="text-center lg:text-left">{`</>`}</div>
-                            <div className="text-base lg:text-2xl font-normal mt-6 ml-4 lg:ml-20 text-center lg:text-left">CS @ Boston University, Class of 2026</div>
+                            <div className="text-[2vh] lg:text-[3.5vh] font-normal mt-0 ml-0 lg:ml-[13vh] text-center lg:text-left">
+                                CS @ Boston University, Class of 2026
+                            </div>
                             <div className="text-center lg:text-left">
                                 <a 
                                     href="mailto:sanghyeok@kangsk.dev"
-                                    className="inline-block text-base lg:text-lg font-normal mt-8 ml-4 lg:ml-20 px-6 lg:px-8 py-2 border border-gray-800 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                                    className="inline-flex items-center h-[7vh] text-[2.25vh] lg:text-[2.5vh] font-normal mt-0 ml-0 lg:ml-[13vh] px-[3vh] border border-gray-800 rounded-lg hover:bg-gray-50 transition-colors duration-200"
                                 >
                                     Contact
                                 </a>
@@ -62,40 +100,31 @@ export default function Home() {
                     </div>
                 </section>
                 
-                <section id="projects" className="h-[100dvh] pl-0 lg:pl-[300px] xl:pl-[400px] bg-gray-25">
+                <section id="projects" className="h-[100dvh] pl-0 lg:pl-[19vw] xl:pl-[24vw] bg-gray-25">
                     <ProjectGallery />
                 </section>
 
-                <section id="about" className="h-[100dvh] grid place-items-center pl-0 lg:pl-[300px] xl:pl-[400px] bg-gray-25 px-4 lg:px-0">
+                <section id="about" className="h-[100dvh] grid place-items-center pl-0 lg:pl-[25vw] xl:pl-[30vw] bg-gray-25 px-[2vw] lg:px-0">
                     <div className="relative">
-                        <div className="hidden lg:block absolute right-full mr-12 text-gray-400 text-sm font-mono select-none">
-                            <div className="leading-[4rem]">
+                        <div className="hidden lg:block absolute right-full mr-[3vw] text-gray-400 text-[1.8vh] font-mono select-none">
+                            <div className="leading-[8vh]">
                                 <div>1</div>
                                 <div>2</div>
                                 <div>3</div>
                             </div>
-                            <div className="leading-[2rem] mt-8">
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
-                                <div>//</div>
+                            <div className="leading-[4vh] mt-[4vh]">
+                                {Array.from({ length: commentLines }, (_, i) => (
+                                    <div key={i}>//</div>
+                                ))}
                             </div>
                         </div>
                         <div>
-                            <div className="text-2xl lg:text-6xl font-[Source_Sans_3] font-thin leading-[2.5rem] lg:leading-[4rem] tracking-wider">
+                            <div className="text-[4vh] lg:text-[6vh] font-[Source_Sans_3] font-thin leading-[5vh] lg:leading-[8vh] tracking-wider">
                                 <div>{`<>`}</div>
-                                <div className="ml-4 lg:ml-20">About</div>
+                                <div className="ml-[4vh] lg:ml-[10vh]">About</div>
                                 <div>{`</>`}</div>
                             </div>
-                            <div className="ml-4 lg:ml-20 space-y-3 lg:space-y-4 text-gray-600 leading-relaxed max-w-[300px] sm:max-w-[400px] lg:max-w-[600px] mt-6 lg:mt-8 text-xs lg:text-base">
+                            <div className="ml-[4vh] lg:ml-[10vh] space-y-[2vh] lg:space-y-[3vh] text-gray-600 leading-relaxed max-w-[80vw] sm:max-w-[60vw] lg:max-w-[40vw] mt-[3vh] lg:mt-[4vh] text-[1.65vh] lg:text-[2vh]">
                                 <p>
                                     I'm a 3rd year Computer Science student at Boston University, passionate about building innovative solutions that make a difference. My journey in software engineering started in the 6th grade with simple Minecraft plugins, and has evolved into creating full-stack applications that solve real-world problems. I specialize in full-stack development, but have a growing interest in AI/ML applications.
                                 </p>
@@ -112,12 +141,12 @@ export default function Home() {
 
                 <button 
                     onClick={handleArrowScroll}
-                    className="fixed bottom-6 lg:bottom-12 cursor-pointer animate-bounce-slow z-20 left-1/2 lg:left-[calc(50%+150px)] xl:left-[calc(50%+200px)] -translate-x-1/2"
+                    className="fixed bottom-[3vh] lg:bottom-[6vh] cursor-pointer animate-bounce-slow z-20 left-1/2 lg:left-[calc(50%+12.5vw)] xl:left-[calc(50%+15vw)] -translate-x-1/2"
                 >
                     {activeSection === 'about' ? (
-                        <FiChevronUp className="w-6 h-6 lg:w-8 lg:h-8 text-gray-600" />
+                        <FiChevronUp className="w-[3vh] h-[3vh] lg:w-[4vh] lg:h-[4vh] text-gray-600" />
                     ) : (
-                        <FiChevronDown className="w-6 h-6 lg:w-8 lg:h-8 text-gray-600" />
+                        <FiChevronDown className="w-[3vh] h-[3vh] lg:w-[4vh] lg:h-[4vh] text-gray-600" />
                     )}
                 </button>
             </div>

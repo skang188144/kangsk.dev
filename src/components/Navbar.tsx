@@ -29,26 +29,29 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
         <>
             <button 
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="lg:hidden fixed top-4 right-4 z-50 p-2 bg-white rounded-lg shadow-md"
+                className="lg:hidden fixed top-[2vh] right-[2vh] z-50 p-[1vh] bg-white rounded-lg shadow-md"
             >
-                {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+                {isMenuOpen ? <FiX size="3vh" /> : <FiMenu size="3vh" />}
             </button>
 
             <nav className={`${sourceSans.className} fixed ${
                 isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-            } lg:translate-x-0 left-0 top-0 h-[100dvh] w-[300px] lg:w-[300px] xl:w-[400px] bg-white shadow-md flex items-center justify-center transition-transform duration-300 z-40`}>
-                <div className="absolute top-8 lg:top-12 left-1/2 -translate-x-1/2">
-                    <Image
-                        src={headshot}
-                        alt="Profile headshot"
-                        className="w-[200px] h-[200px] rounded-full object-cover"
-                    />
+            } lg:translate-x-0 left-0 top-0 h-[100dvh] w-[80vw] lg:w-[19vw] xl:w-[24vw] bg-white shadow-md flex items-center justify-center transition-transform duration-300 z-40`}>
+                <div className="absolute top-[4vh] lg:top-[6vh] left-1/2 -translate-x-1/2">
+                    <div className="relative w-[25vh] h-[25vh]">
+                        <Image
+                            src={headshot}
+                            alt="Profile headshot"
+                            fill
+                            className="rounded-full object-cover"
+                        />
+                    </div>
                 </div>
 
-                <div className="flex flex-col items-center justify-center space-y-16">
+                <div className="flex flex-col items-center justify-center space-y-[8vh]">
                     <button
                         onClick={handleScroll('home')}
-                        className={`transition-colors duration-200 text-2xl ${
+                        className={`transition-colors duration-200 text-[3vh] ${
                             activeSection === 'home' ? 'text-[#012c95]' : 'text-gray-800 hover:text-gray-600'
                         }`}
                     >
@@ -56,7 +59,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                     </button>
                     <button
                         onClick={handleScroll('projects')}
-                        className={`transition-colors duration-200 text-2xl ${
+                        className={`transition-colors duration-200 text-[3vh] ${
                             activeSection === 'projects' ? 'text-[#012c95]' : 'text-gray-800 hover:text-gray-600'
                         }`}
                     >
@@ -64,7 +67,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                     </button>
                     <button
                         onClick={handleScroll('about')}
-                        className={`transition-colors duration-200 text-2xl ${
+                        className={`transition-colors duration-200 text-[3vh] ${
                             activeSection === 'about' ? 'text-[#012c95]' : 'text-gray-800 hover:text-gray-600'
                         }`}
                     >
@@ -72,22 +75,22 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                     </button>
                 </div>
 
-                <div className="absolute bottom-12 grid grid-cols-2 gap-8">
+                <div className="absolute bottom-[6vh] grid grid-cols-2 gap-[4vh]">
                     <a href="https://linkedin.com/in/kangsk" target="_blank" rel="noopener noreferrer" 
                        className="text-gray-800 hover:text-gray-600 transition-colors duration-200">
-                        <FiLinkedin size={24} />
+                        <FiLinkedin size="3vh" />
                     </a>
                     <a href="https://github.com/skang188144" target="_blank" rel="noopener noreferrer"
                        className="text-gray-800 hover:text-gray-600 transition-colors duration-200">
-                        <FiGithub size={24} />
+                        <FiGithub size="3vh" />
                     </a>
                     <a href="mailto:sanghyeok@kangsk.dev"
                        className="text-gray-800 hover:text-gray-600 transition-colors duration-200">
-                        <FiMail size={24} />
+                        <FiMail size="3vh" />
                     </a>
                     <a href="https://kangsk.dev" target="_blank" rel="noopener noreferrer"
                        className="text-gray-800 hover:text-gray-600 transition-colors duration-200">
-                        <FiGlobe size={24} />
+                        <FiGlobe size="3vh" />
                     </a>
                 </div>
             </nav>
