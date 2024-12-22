@@ -62,59 +62,63 @@ const ProjectGallery = () => {
                 <FiChevronLeft className="w-6 lg:w-8 h-6 lg:h-8" />
             </button>
 
-            <div className="flex items-center space-x-8 lg:space-x-16 px-4 lg:px-24">
-                {projects.map((project, index) => (
-                    <div
-                        key={project.title}
-                        className={`transition-all duration-500 ${
-                            index === activeIndex 
-                                ? 'opacity-100 scale-100' 
-                                : 'opacity-40 scale-95'
-                        }`}
-                        style={{
-                            transform: `translateX(-${activeIndex * 100}%)`
-                        }}
-                    >
-                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-center">
-                            <div className="relative w-[280px] sm:w-[300px] lg:w-[500px] h-[160px] sm:h-[200px] lg:h-[300px] rounded-lg border border-gray-200 overflow-hidden">
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className={`object-contain ${
-                                        project.title === "Detox" ? "scale-[1.0]" : "object-cover"
-                                    }`}
-                                    priority={index === 0}
-                                />
-                            </div>
-                            
-                            <div className="w-[280px] sm:w-[300px] lg:w-[400px] text-center lg:text-left max-h-[40dvh] overflow-y-auto">
-                                <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
-                                <p className="text-gray-600 mb-6">{project.description}</p>
-                                <div className="flex flex-wrap gap-2 mb-6">
-                                    {project.technologies.map((tech) => (
-                                        <span 
-                                            key={tech}
-                                            className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600"
-                                        >
-                                            {tech}
-                                        </span>
-                                    ))}
+            <div className="w-full overflow-hidden">
+                <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{
+                        transform: `translateX(-${activeIndex * 100}%)`
+                    }}
+                >
+                    {projects.map((project, index) => (
+                        <div
+                            key={project.title}
+                            className={`w-full flex-shrink-0 transition-all duration-500 ${
+                                index === activeIndex 
+                                    ? 'opacity-100 scale-100' 
+                                    : 'opacity-40 scale-95'
+                            }`}
+                        >
+                            <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-center justify-center max-w-7xl mx-auto">
+                                <div className="relative w-[280px] sm:w-[300px] lg:w-[400px] h-[160px] sm:h-[200px] lg:h-[250px] rounded-lg border border-gray-200 overflow-hidden">
+                                    <Image
+                                        src={project.image}
+                                        alt={project.title}
+                                        fill
+                                        className={`object-contain ${
+                                            project.title === "Detox" ? "scale-[1.0]" : "object-cover"
+                                        }`}
+                                        priority={index === 0}
+                                    />
                                 </div>
-                                {project.link && (
-                                    <a 
-                                        href={project.link}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="text-[#012c95] hover:underline"
-                                    >
-                                        View Project →
-                                    </a>
-                                )}
+                                
+                                <div className="w-[280px] sm:w-[300px] lg:w-[400px] text-center lg:text-left max-h-[40dvh] overflow-y-auto">
+                                    <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
+                                    <p className="text-gray-600 mb-6">{project.description}</p>
+                                    <div className="flex flex-wrap gap-2 mb-6">
+                                        {project.technologies.map((tech) => (
+                                            <span 
+                                                key={tech}
+                                                className="px-3 py-1 bg-gray-100 rounded-full text-sm text-gray-600"
+                                            >
+                                                {tech}
+                                            </span>
+                                        ))}
+                                    </div>
+                                    {project.link && (
+                                        <a 
+                                            href={project.link}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="text-[#012c95] hover:underline"
+                                        >
+                                            View Project →
+                                        </a>
+                                    )}
+                                </div>
                             </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
 
             <button 
