@@ -30,7 +30,7 @@ const projects: Project[] = [
         description: "A terminal-themed portfolio website built with React.js and JavaScript.",
         image: "/TerminalPortfolio.png",
         technologies: ["React", "JavaScript", "HTML", "CSS"],
-        link: "https://github.com/skang188144/kangsk.dev"
+        link: "https://github.com/skang188144/old-kangsk.dev"
     },
     {
         title: "kangsk.dev",
