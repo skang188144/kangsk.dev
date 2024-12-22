@@ -1,114 +1,129 @@
-import Image from "next/image";
-import { Geist, Geist_Mono } from "next/font/google";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Navbar from '@/components/Navbar';
+import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
+import Link from 'next/link';
+import { useState, useEffect } from 'react';
+import ProjectGallery from '@/components/ProjectGallery';
 
 export default function Home() {
-  return (
-    <div
-      className={`${geistSans.variable} ${geistMono.variable} grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]`}
-    >
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/pages/index.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+    const [activeSection, setActiveSection] = useState('home');
+    const sections = ['home', 'projects', 'about'];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=default-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    useEffect(() => {
+        // Reset to home section on page load/refresh
+        setActiveSection('home');
+        document.getElementById('home')?.scrollIntoView({ behavior: 'auto' });
+
+        // Prevent default scrolling
+        const preventDefault = (e: Event) => e.preventDefault();
+        document.addEventListener('wheel', preventDefault, { passive: false });
+        document.addEventListener('touchmove', preventDefault, { passive: false });
+
+        return () => {
+            document.removeEventListener('wheel', preventDefault);
+            document.removeEventListener('touchmove', preventDefault);
+        };
+    }, []);
+
+    const handleArrowScroll = () => {
+        const currentIndex = sections.indexOf(activeSection);
+        const nextSection = sections[(currentIndex + 1) % sections.length];
+        
+        setActiveSection(nextSection);
+        document.getElementById(nextSection)?.scrollIntoView({
+            behavior: 'smooth'
+        });
+    };
+
+    return (
+        <>
+            <div className="animate-fadeIn overflow-hidden">
+                <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+                <section id="home" className="min-h-screen grid place-items-center pl-[400px] bg-gray-25">
+                    <div className="relative">
+                        <div className="absolute right-full mr-12 text-gray-400 text-sm font-mono select-none leading-[4rem]">
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>4</div>
+                        </div>
+                        <div className="text-6xl font-[Source_Sans_3] font-thin leading-[4rem] tracking-wider">
+                            <div>{`<>`}</div>
+                            <div className="ml-20">Hello! I'm <span className="font-normal text-[#012c95]">Sanghyeok</span>,</div>
+                            <div className="ml-20">a full-stack software engineer.</div>
+                            <div>{`</>`}</div>
+                            <div className="text-2xl font-normal mt-6 ml-20 leading-normal">CS @ Boston University, Class of 2026</div>
+                            <a 
+                                href="mailto:sanghyeok@kangsk.dev"
+                                className="inline-block text-lg font-normal mt-8 ml-20 px-8 py-2 border border-gray-800 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+                            >
+                                Contact
+                            </a>
+                        </div>
+                    </div>
+                </section>
+                
+                <section id="projects" className="min-h-screen pl-[400px] bg-gray-25">
+                    <ProjectGallery />
+                </section>
+
+                <section id="about" className="min-h-screen grid place-items-center pl-[400px] bg-gray-25">
+                    <div className="relative">
+                        <div className="absolute right-full mr-12 text-gray-400 text-sm font-mono select-none">
+                            {/* Line numbers for title */}
+                            <div className="leading-[4rem]">
+                                <div>1</div>
+                                <div>2</div>
+                                <div>3</div>
+                            </div>
+                            {/* Comments for body text, with different line height */}
+                            <div className="leading-[2rem] mt-8">
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                                <div>//</div>
+                            </div>
+                        </div>
+                        <div>
+                            <div className="text-6xl font-[Source_Sans_3] font-thin leading-[4rem] tracking-wider">
+                                <div>{`<>`}</div>
+                                <div className="ml-20">About</div>
+                                <div>{`</>`}</div>
+                            </div>
+                            <div className="ml-20 space-y-4 text-gray-600 leading-relaxed max-w-[600px] mt-8">
+                                <p>
+                                    I'm a 3rd year Computer Science student at Boston University, passionate about building innovative solutions that make a difference. My journey in software engineering started in the 6th grade with simple Minecraft plugins, and has evolved into creating full-stack applications that solve real-world problems. I specialize in full-stack development, but have a growing interest in AI/ML applications.
+                                </p>
+                                <p>
+                                    My experience includes my time at McCarren AI where I worked on full-stack development of an AI-powered web platform designed to match government contracts to clients. I also worked as a Network Engineering Research Assistant at Boston University, where I assisted the development of a Liquid Data Networking (LDN) implementation utilizing Raptor codes.
+                                </p>
+                                <p>
+                                    Currently seeking internship opportunities where I can apply my skills and continue learning from experienced engineers.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <button 
+                    onClick={handleArrowScroll}
+                    className="fixed bottom-12 cursor-pointer animate-bounce-slow"
+                    style={{ left: 'calc(50% + 200px)' }}
+                >
+                    {activeSection === 'about' ? (
+                        <FiChevronUp size={32} className="text-gray-600" />
+                    ) : (
+                        <FiChevronDown size={32} className="text-gray-600" />
+                    )}
+                </button>
+            </div>
+        </>
+    );
 }
