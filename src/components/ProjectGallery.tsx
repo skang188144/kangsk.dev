@@ -53,16 +53,16 @@ const ProjectGallery = () => {
     };
 
     return (
-        <div className="h-screen flex items-center relative overflow-hidden">
+        <div className="min-h-[100dvh] h-[100dvh] flex items-center relative overflow-hidden px-4 lg:px-0">
             <button 
                 onClick={prevProject}
-                className="absolute left-8 z-10 text-gray-600 hover:text-gray-800 transition-colors"
+                className="absolute left-2 lg:left-8 z-10 text-gray-600 hover:text-gray-800 transition-colors"
                 aria-label="Previous project"
             >
-                <FiChevronLeft size={32} />
+                <FiChevronLeft className="w-6 lg:w-8 h-6 lg:h-8" />
             </button>
 
-            <div className="flex items-center space-x-16 px-24">
+            <div className="flex items-center space-x-8 lg:space-x-16 px-4 lg:px-24">
                 {projects.map((project, index) => (
                     <div
                         key={project.title}
@@ -75,8 +75,8 @@ const ProjectGallery = () => {
                             transform: `translateX(-${activeIndex * 100}%)`
                         }}
                     >
-                        <div className="flex gap-12 items-center">
-                            <div className="relative w-[500px] h-[300px] rounded-lg border border-gray-200 overflow-hidden">
+                        <div className="flex flex-col lg:flex-row gap-4 lg:gap-12 items-center">
+                            <div className="relative w-[280px] sm:w-[300px] lg:w-[500px] h-[160px] sm:h-[200px] lg:h-[300px] rounded-lg border border-gray-200 overflow-hidden">
                                 <Image
                                     src={project.image}
                                     alt={project.title}
@@ -88,7 +88,7 @@ const ProjectGallery = () => {
                                 />
                             </div>
                             
-                            <div className="w-[400px]">
+                            <div className="w-[280px] sm:w-[300px] lg:w-[400px] text-center lg:text-left max-h-[40dvh] overflow-y-auto">
                                 <h3 className="text-2xl font-semibold mb-4">{project.title}</h3>
                                 <p className="text-gray-600 mb-6">{project.description}</p>
                                 <div className="flex flex-wrap gap-2 mb-6">
@@ -119,10 +119,10 @@ const ProjectGallery = () => {
 
             <button 
                 onClick={nextProject}
-                className="absolute right-8 z-10 text-gray-600 hover:text-gray-800 transition-colors"
+                className="absolute right-2 lg:right-8 z-10 text-gray-600 hover:text-gray-800 transition-colors"
                 aria-label="Next project"
             >
-                <FiChevronRight size={32} />
+                <FiChevronRight className="w-6 lg:w-8 h-6 lg:h-8" />
             </button>
         </div>
     );
