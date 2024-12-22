@@ -1,6 +1,5 @@
 import Navbar from '@/components/Navbar';
 import { FiChevronDown, FiChevronUp } from 'react-icons/fi';
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import ProjectGallery from '@/components/ProjectGallery';
 

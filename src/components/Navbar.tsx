@@ -1,10 +1,7 @@
 import { Source_Sans_3 } from 'next/font/google';
-import Link from 'next/link';
 import Image from 'next/image';
 import headshot from '/public/Headshot.png';
-import { usePathname } from 'next/navigation';
 import { FiLinkedin, FiGithub, FiMail, FiGlobe } from 'react-icons/fi';
-import { useState } from 'react';
 
 const sourceSans = Source_Sans_3({
     weight: ['600'],
