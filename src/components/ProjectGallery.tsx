@@ -12,6 +12,20 @@ interface Project {
 
 const projects: Project[] = [
     {
+        title: "jobs.kangsk.dev",
+        description: "An all-in-one jobs platform providing comprehensive job search and application management features, including multi-platform job aggregation, application tracking, and AI-powered cover letter generation",
+        image: "/jobs.kangsk.dev.png",
+        technologies: ["React", "TypeScript", "Next.js", "LangChain", "LangGraph", "Vercel"],
+        link: "https://github.com/skang188144/jobs.kangsk.dev"
+    },
+    {
+        title: "tidalfy",
+        description: "A web application providing seamless migration features from Spotify to TIDAL, including playlist transfers, playlist synchronization, daily mix migration, and more.",
+        image: "/tidalfy.png",
+        technologies: ["React", "TypeScript", "Next.js"],
+        link: "https://github.com/skang188144/tidalfy"
+    },
+    {
         title: "FakeNewsDetector",
         description: "A web application that utilizes retrieval-augmented generation (RAG) and large language models (LLMs) to detect fake news.",
         image: "/FakeNewsDetector.png",
