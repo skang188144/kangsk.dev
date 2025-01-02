@@ -84,7 +84,7 @@ const Navbar = ({ activeSection, setActiveSection }: NavbarProps) => {
                        className="text-gray-800 hover:text-gray-600 transition-colors duration-200">
                         <FiGithub size="3vh" />
                     </a>
-                    <a href="mailto:sanghyeok@kangsk.dev"
+                    <a href="mailto:inquiry@kangsk.dev"
                        className="text-gray-800 hover:text-gray-600 transition-colors duration-200">
                         <FiMail size="3vh" />
                     </a>
