@@ -3,10 +3,21 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --accent-blue: #012c95;
+  --accent-blue-light: #4d7fff;
+  --accent-blue-glow: rgba(1, 44, 149, 0.15);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  height: 100%;
 }
 
 body {
@@ -23,4 +34,153 @@ body {
 * {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+}
+
+/* Dramatic gradient background */
+.gradient-bg {
+  background: 
+    /* Intense blue burst from top-right */
+    radial-gradient(ellipse 70% 70% at 100% 0%, rgba(1, 44, 149, 0.4) 0%, transparent 50%),
+    /* Large blue wash from bottom-right corner */
+    radial-gradient(ellipse 80% 100% at 100% 100%, rgba(77, 127, 255, 0.5) 0%, transparent 60%),
+    /* Secondary blue glow from bottom */
+    radial-gradient(ellipse 120% 60% at 50% 100%, rgba(1, 44, 149, 0.3) 0%, transparent 50%),
+    /* Soft blue accent top-left */
+    radial-gradient(ellipse 50% 50% at 0% 0%, rgba(153, 187, 255, 0.3) 0%, transparent 50%),
+    /* Mid-page blue mist */
+    radial-gradient(ellipse 60% 40% at 70% 50%, rgba(77, 127, 255, 0.2) 0%, transparent 50%),
+    /* Base gradient - white to blue */
+    linear-gradient(135deg, 
+      #ffffff 0%, 
+      #f0f5ff 20%, 
+      #e0ebff 40%, 
+      #c7d9ff 60%, 
+      #a8c4ff 80%, 
+      #8ab4ff 100%
+    );
+}
+
+/* Floating particles effect */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(1, 44, 149, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* Glassmorphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+/* Glow effect for interactive elements */
+.glow-hover {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.glow-hover:hover {
+  box-shadow: 0 0 30px rgba(1, 44, 149, 0.2), 0 0 60px rgba(1, 44, 149, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Text gradient effect */
+.text-gradient {
+  background: linear-gradient(135deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated underline effect */
+.animated-underline {
+  position: relative;
+}
+
+.animated-underline::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-blue) 0%, var(--accent-blue-light) 100%);
+  transition: width 0.3s ease;
+}
+
+.animated-underline:hover::after {
+  width: 100%;
+}
+
+/* Programmatic scroll container - JS handles snapping */
+.scroll-container {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100dvh;
+  width: 100%;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: none;
+}
+
+/* Subtle grid pattern overlay */
+.grid-pattern {
+  background-image: 
+    linear-gradient(rgba(1, 44, 149, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(1, 44, 149, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Card hover effect */
+.card-hover {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 
+    0 20px 40px rgba(1, 44, 149, 0.15),
+    0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Shimmer effect for loading states */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.5) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+/* Pulse ring animation */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(1, 44, 149, 0.3);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 15px rgba(1, 44, 149, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(1, 44, 149, 0);
+  }
+}
+
+.pulse-ring {
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
